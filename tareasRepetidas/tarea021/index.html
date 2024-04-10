@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorted Lists</title>
+<style>
+    body {
+      background-color: lightgray;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      font-size: 30px;
+    }
+    .city-list {
+      text-align: left;
+    }
+    .population-list {
+      text-align: right;
+    }
+    button {
+      padding: 10px 20px;
+      margin-left: 5px;
+      font-size: 16px;
+    }
+    .buttons{
+        margin-left: 630px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <ol class="city-list" id="cityList">
+            <li>Burgos</li>
+            <li>Barcelona</li>
+            <li>Alicante</li>
+            <li>Zaragoza</li>
+            <li>Salamanca</li>
+        </ol>
+        <ul class="population-list" id="populationList">
+            <li>156325</li>
+            <li>2547362</li>
+            <li>365787</li>
+            <li>240005</li>
+            <li>136196</li>
+        </ul>
+
+        
+    </div>
+    <div class="buttons">
+        <button onclick="sortAlphabetically()">Sort alphabetically</button>
+        <button onclick="Unsort()">Unsort</button>
+        <button onclick="sortByPopulation()">Sort by population</button>
+        
+    </div>
+    
+
+<script src="script.js"></script>
+</body>
+</html>

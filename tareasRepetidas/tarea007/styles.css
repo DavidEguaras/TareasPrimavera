@@ -1,0 +1,37 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header{
+    background-color: black;
+    color: white;
+    padding: 15px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cajaFigura {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    padding: 0px;
+}
+
+.cajas{
+    margin-left: 250px;
+}
+
+.nombresFiguras{
+    margin-left: 250px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+   
+}
+.nombresFiguras h4{
+    margin-right: 170px;
+}

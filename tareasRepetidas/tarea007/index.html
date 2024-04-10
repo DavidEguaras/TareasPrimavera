@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container d-flex flex-row justify-content-between">
+            <div class="">
+                <h1>David Beneitez Eguaras</h1>
+            </div>
+    
+            <div class="ms-auto">
+                <h1>Tarea 007</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="filas" class="form-label">Numero de Filas:</label>
+                    <input type="number" class="form-control" id="filas">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="caracterLineas" class="form-label">Caracter Contorno Figura:</label>
+                    <input type="text" class="form-control" id="caracterLineas">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="caracterRelleno" class="form-label">Caracter Relleno Figura:</label>
+                    <input type="text" class="form-control" id="caracterRelleno">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="color" class="form-label">Color de relleno:</label>
+                    <input type="color" class="form-control" id="color">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button onclick="dibujar()">Dibujar</button>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        </div>
+            
+        <div class="nombresFiguras">
+            <h4>rombo Hueco</h4>
+            <h4>cuadrado Hueco</h4>
+            <h4>rombo Relleno</h4>
+            <h4>cuadrado Relleno</h4>
+        </div>
+
+        <div class="cajas d-flex flex-direction-column">
+            <div class="cajaFigura" id="romboHueco">
+                <!-- Content -->
+            </div>
+            <div class="cajaFigura" id="cuadradoHueco">
+                <!-- Content -->
+            </div>
+            <div class="cajaFigura" id="romboRelleno">
+                <!-- Content -->
+            </div>
+            <div class="cajaFigura" id="cuadradoRelleno">
+                <!-- Content -->
+            </div>
+        </div>  
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
