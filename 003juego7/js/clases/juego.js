@@ -5,10 +5,10 @@ import { Banca } from "./banca.js";
 
 export class Juego{
     constructor(apuesta){
-        this.apuesta =  apuesta
-        this.baraja = Baraja();
-        this.jugador = Jugador();
-        this.banca = Banca();
+        this.apuesta =  document.getElementById('');
+        this.baraja = new Baraja();
+        this.jugador = new Jugador();
+        this.banca = new Banca();
     }
 
     iniciarJuego(){
