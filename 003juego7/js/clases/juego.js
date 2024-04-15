@@ -41,24 +41,21 @@ export class Juego {
         const puntuacionBanca = this.banca.calcularPuntuacion();
 
         let mensajeResultado = "";
-
+        //Solo tenemos en cuenta el balance del jugador
         if (puntuacionJugador === 7.5 || (puntuacionBanca > 7.5 && puntuacionJugador <= 7.5)) {
             mensajeResultado = "¡Felicidades! Has ganado.";
-            // Incrementar el balance del jugador
             this.jugador.incrementarBalance(this.apuesta);
         } else if (puntuacionBanca === 7.5 || (puntuacionJugador > 7.5 && puntuacionBanca <= 7.5) || puntuacionJugador < puntuacionBanca) {
             mensajeResultado = "¡La banca gana!";
-            // Decrementar el balance del jugador
             this.jugador.decrementarBalance(this.apuesta);
         } else if (puntuacionJugador === puntuacionBanca) {
             mensajeResultado = "Empate.";
         } else {
             mensajeResultado = "¡Felicidades! Has ganado.";
-            // Incrementar el balance del jugador
             this.jugador.incrementarBalance(this.apuesta);
         }
 
-        
+        //Reinciamos las manos para la siguiente partida
         this.jugador.reiniciarMano();
         this.banca.reiniciarMano();
     

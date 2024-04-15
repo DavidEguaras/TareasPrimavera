@@ -22,9 +22,11 @@ export class Jugador{
     incrementarBalance(incremento){
         this.balance += incremento;
     }
+
     decrementarBalance(incremento){
         this.balance =- incremento;
     }
+
     reiniciarMano() {
         this.mano = [];
     }
