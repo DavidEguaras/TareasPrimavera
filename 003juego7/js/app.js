@@ -34,7 +34,6 @@ function iniciarJuego(nombreJugador) {
         cartasRepartidasTotales.textContent = juego.baraja.cartas.length - 1;
     }
 
-    // Manejador de evento para el botón "Pedir Carta"
     pedirCartaBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
             juego.jugador.recibirCarta(juego.baraja.sacarCarta());
@@ -47,7 +46,7 @@ function iniciarJuego(nombreJugador) {
         }
     });
 
-    
+
     plantarseBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
             juego.finalizar();
