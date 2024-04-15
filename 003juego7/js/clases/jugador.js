@@ -4,6 +4,7 @@ export class Jugador{
     constructor(nombre){
         this.nombre = nombre;
         this.mano = [];
+        this.balance = 0;
     }
 
     recibirCarta(cartaRecibida){
@@ -16,5 +17,15 @@ export class Jugador{
             puntuacion += carta.valor
         });
         return puntuacion;
+    }
+
+    incrementarBalance(incremento){
+        this.balance += incremento;
+    }
+    decrementarBalance(incremento){
+        this.balance =- incremento;
+    }
+    reiniciarMano() {
+        this.mano = [];
     }
 }

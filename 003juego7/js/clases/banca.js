@@ -1,15 +1,26 @@
 import { Jugador } from "./jugador.js";
 
-export class Banca extends Jugador{
-    constructor(nombre){
-        super(nombre, mano);
+export class Banca {
+    constructor() {
+        this.nombre = 'Banca';
+        this.mano = [];
     }
 
-    recibirCarta(){
-        super.recibirCarta();
+    recibirCarta(carta) {
+        if (this.calcularPuntuacion() <= 5) {
+            this.mano.push(carta);
+        }
     }
 
-    calcularPuntuacion(){
-        super.calcularPuntuacion();
+    calcularPuntuacion() {
+        let puntuacion = 0;
+        this.mano.forEach(carta => {
+            puntuacion += carta.valor;
+        });
+        return puntuacion;
+    }
+
+    reiniciarMano() {
+        this.mano = [];
     }
 }
