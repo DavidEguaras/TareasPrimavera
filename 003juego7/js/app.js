@@ -9,7 +9,6 @@ function iniciarJuego(nombreJugador, apuesta) {
     const subseccionJugador = document.getElementById("subseccionJugador");
     const balanceTotalDineroJugador = document.getElementById("balanceTotalDineroJugador");
     const dineroApostado = document.getElementById("dineroApostado");
-    //aqui se muestra si el jugador ha ganado la partida o no una vez que el juego finalice
     const mensajeFinPartida = document.getElementById("mensajeFinPartida");
     const cartasRepartidasTotales = document.getElementById("cartasRepartidasTotales");
 
@@ -58,7 +57,6 @@ function iniciarJuego(nombreJugador, apuesta) {
             actualizarInterfaz();
         }
     });
-
 }
 
 //se lo pedi a chatgpt porque no sabia como manejar bien el inicio del juego y el evento

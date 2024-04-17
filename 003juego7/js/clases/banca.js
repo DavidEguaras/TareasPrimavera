@@ -7,7 +7,7 @@ export class Banca {
     }
 
     recibirCarta(carta) {
-        if (this.calcularPuntuacion() <= 5) {
+        if (this.calcularPuntuacion() <= 5.5){
             this.mano.push(carta);
         }
     }

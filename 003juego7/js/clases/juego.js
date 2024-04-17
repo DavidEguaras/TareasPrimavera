@@ -45,10 +45,6 @@ export class Juego {
             mensajeResultado = "¡Felicidades! Has ganado.";
             this.jugador.incrementarBalance(this.apuesta);
         }
-
-        //Reinciamos las manos para la siguiente partida
-        this.jugador.reiniciarMano();
-        this.banca.reiniciarMano();
         this.baraja.barajar();
         return mensajeResultado;
     }
