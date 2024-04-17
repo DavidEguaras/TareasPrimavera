@@ -1,5 +1,5 @@
 import { Juego } from "./clases/juego.js";
-import { Baraja } from "./clases/baraja.js";
+
 
 // El juego no se inicia hasta que el jugador no introduzca su nombre
 function iniciarJuego(nombreJugador, apuesta) {
@@ -15,7 +15,7 @@ function iniciarJuego(nombreJugador, apuesta) {
 
     // Creamos una instancia del juego
     const juego = new Juego(apuesta, nombreJugador);
-    juego.iniciarJuego()
+    juego.iniciarJuego();
 
 
     function actualizarInterfaz() {
@@ -24,7 +24,7 @@ function iniciarJuego(nombreJugador, apuesta) {
             <h2>BANCA</h2>
             <p>Numero de cartas de la banca: ${juego.banca.mano.length}</p>
         `;
-        console.log(juego.banca.mano.map(carta => carta.nombre + ' de ' + carta.palo));
+        console.log('Cartas de la Banca: ', juego.banca.mano.map(carta => carta.nombre + ' de ' + carta.palo));
 
         //info del jugador
         subseccionJugador.innerHTML = `
@@ -36,7 +36,6 @@ function iniciarJuego(nombreJugador, apuesta) {
         balanceTotalDineroJugador.textContent = juego.jugador.balance;
         dineroApostado.textContent = juego.apuesta;
         cartasRepartidasTotales.textContent = 40 - juego.baraja.cartas.length;
-        console.log(juego.baraja);
     }
 
     pedirCartaBtn.addEventListener("click", function() {
@@ -59,6 +58,7 @@ function iniciarJuego(nombreJugador, apuesta) {
             actualizarInterfaz();
         }
     });
+
 }
 
 //se lo pedi a chatgpt porque no sabia como manejar bien el inicio del juego y el evento
