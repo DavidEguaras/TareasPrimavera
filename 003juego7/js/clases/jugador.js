@@ -23,8 +23,8 @@ export class Jugador{
         this.balance += incremento;
     }
 
-    decrementarBalance(incremento){
-        this.balance =- incremento;
+    decrementarBalance(decremento){
+        this.balance -= decremento;
     }
 
     reiniciarMano() {

@@ -1,7 +1,8 @@
 import { Juego } from "./clases/juego.js";
+import { Baraja } from "./clases/baraja.js";
 
 // El juego no se inicia hasta que el jugador no introduzca su nombre
-function iniciarJuego(nombreJugador) {
+function iniciarJuego(nombreJugador, apuesta) {
     const pedirCartaBtn = document.getElementById("pedirCartaButton");
     const plantarseBtn = document.getElementById("plantarseButton");
     const subseccionBanca = document.getElementById("subseccionBanca");
@@ -9,10 +10,12 @@ function iniciarJuego(nombreJugador) {
     const balanceTotalDineroJugador = document.getElementById("balanceTotalDineroJugador");
     const dineroApostado = document.getElementById("dineroApostado");
     //aqui se muestra si el jugador ha ganado la partida o no una vez que el juego finalice
-    const mensajeFinPartida = document.getElementById("mensajeFinPartida")
+    const mensajeFinPartida = document.getElementById("mensajeFinPartida");
+    const cartasRepartidasTotales = document.getElementById("cartasRepartidasTotales");
 
     // Creamos una instancia del juego
-    const juego = new Juego(10, nombreJugador);
+    const juego = new Juego(apuesta, nombreJugador);
+    juego.iniciarJuego()
 
 
     function actualizarInterfaz() {
@@ -32,14 +35,14 @@ function iniciarJuego(nombreJugador) {
         //informacion general de la partida
         balanceTotalDineroJugador.textContent = juego.jugador.balance;
         dineroApostado.textContent = juego.apuesta;
-        cartasRepartidasTotales.textContent = juego.baraja.cartas.length - 1;
+        cartasRepartidasTotales.textContent = 40 - juego.baraja.cartas.length;
+        console.log(juego.baraja);
     }
 
     pedirCartaBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
             //Por cada vez que el jugador pide una carta, la banca pedira otra si su puntuacion es menor o igual que 5
-            juego.jugador.recibirCarta(juego.baraja.sacarCarta());
-            juego.banca.recibirCarta(juego.baraja.sacarCarta());
+            juego.repartirCartas();
             actualizarInterfaz();
             //Si el jugador se pasa de 7,5, la partida termina automaticamente
             if (juego.jugador.calcularPuntuacion() > 7.5) {
@@ -60,11 +63,12 @@ function iniciarJuego(nombreJugador) {
 
 //se lo pedi a chatgpt porque no sabia como manejar bien el inicio del juego y el evento
 // Manejador de evento para enviar el nombre del jugador
-document.getElementById("formNombre").addEventListener("submit", function(event) {
+document.getElementById("formNombreApuesta").addEventListener("submit", function(event) {
     event.preventDefault();
 
     const nombreJugador = document.getElementById("nombreJugadorInput").value;
+    const apuesta = document.getElementById("apuesta").value;
     document.getElementById("nombreJugadorHeader").textContent = nombreJugador;
-    iniciarJuego(nombreJugador);
+    iniciarJuego(nombreJugador, apuesta);
 });
 

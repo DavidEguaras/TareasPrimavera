@@ -68,9 +68,11 @@
             <div class="subseccion">
                 <h2 id="nombreJugadorHeader">Jugador</h2>
                 <div id="subseccionJugador"></div>
-                <form id="formNombre">
+                <form id="formNombreApuesta">
                     <label for="nombreJugadorInput">Nombre del jugador:</label>
-                    <input type="text" id="nombreJugadorInput" placeholder="Ingrese su nombre">
+                    <input type="text" id="nombreJugadorInput" placeholder="Ingrese su nombre"><br>
+                    <label for="apuesta">Apuesta</label>
+                    <input type="text" id="apuesta" placeholder="Ingrese cantidad a apostar">
                     <br>
                     <button type="submit" id="submitNombre">Aceptar</button>
                 </form>
@@ -91,6 +93,8 @@
                 <h1 id="mensajeFinPartida"></h1>
                 <h4>Dinero Apostado:</h4>
                 <p id="dineroApostado"></p>
+                <h4>Cartas Repartidas:</h4>
+                <p id="cartasRepartidasTotales"></p>
             </div>
         </section>
     </main>

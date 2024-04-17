@@ -13,20 +13,11 @@ export class Juego {
 
     iniciarJuego() {
         this.baraja.barajar();
-        this.repartirCartas();
-        this.mostrarEstado();
     }
 
     repartirCartas() {
         this.jugador.recibirCarta(this.baraja.sacarCarta());
         this.banca.recibirCarta(this.baraja.sacarCarta());
-    }
-
-    mostrarEstado() {
-        console.log(this.jugador.nombre, this.jugador.mano);
-        console.log("Puntuación de ", this.jugador.nombre, ":", this.jugador.calcularPuntuacion());
-        console.log("Banca: ", this.banca.mano);
-        console.log("Puntuación Banca: ", this.banca.calcularPuntuacion());
     }
 
     finalizar() {
@@ -58,7 +49,7 @@ export class Juego {
         //Reinciamos las manos para la siguiente partida
         this.jugador.reiniciarMano();
         this.banca.reiniciarMano();
-    
+        this.baraja.barajar();
         return mensajeResultado;
     }
 }
