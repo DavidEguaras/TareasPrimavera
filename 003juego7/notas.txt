@@ -1,9 +1,9 @@
-agregar metodo para imprimir cartas
-repartir una carta a cada jugador (jugador y banca al principio)
-usar localStorage para almacenar la puntuacion de los jugadores a lo largo de varias partidas
+-Agregar metodo para imprimir cartas
+-Repartir una carta a cada jugador (jugador y banca al principio)
+-Usar localStorage para almacenar la puntuacion de los jugadores a lo largo de varias partidas
 (comprobar el nombre que se ha introducido y el del LS, si coinciden el balance del jugador pasa a ser el del LS)
 
-hacer distintas "pantallas" para la info del jugador:
+Hacer distintas "pantallas" para la info del jugador: (se borra el contenido)
     1a: Introducir nombre jugador
     2a: se ha repartido la primera carta, se agrega la caja para introducir una apuesta
     3a: cuando se introduce un numero a apostar, se elimina la caja de apuestas, y se agregan los botones

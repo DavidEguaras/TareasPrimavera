@@ -17,25 +17,31 @@ function iniciarJuego(nombreJugador, apuesta) {
     juego.iniciarJuego();
 
 
-    function actualizarInterfaz() {
-        //info de la banca
-        subseccionBanca.innerHTML = `
-            <h2>BANCA</h2>
-            <p>Numero de cartas de la banca: ${juego.banca.mano.length}</p>
-        `;
-        console.log('Cartas de la Banca: ', juego.banca.mano.map(carta => carta.nombre + ' de ' + carta.palo));
+   function actualizarInterfaz() {
+    // Info de la banca
+    subseccionBanca.innerHTML = `
+        <h2>BANCA</h2>
+        <ul>
+            ${juego.banca.imprimirManoBanca().join('')}
+        </ul>
+    `;
+    console.log(juego.banca.imprimirMano());
 
-        //info del jugador
-        subseccionJugador.innerHTML = `
-            <p>Tus cartas: ${juego.jugador.mano.map(carta => carta.nombre + ' de ' + carta.palo).join(', ')}</p>
-            <p>Tu puntuacion: ${juego.jugador.calcularPuntuacion()}</p>
-        `;
+    // Info del jugador
+    subseccionJugador.innerHTML = `
+        <h2>JUGADOR</h2>
+        <ul>
+            ${juego.jugador.imprimirMano().join('')}
+        </ul>
+        <p>Tu puntuacion: ${juego.jugador.calcularPuntuacion()}</p>
+    `;
 
-        //informacion general de la partida
-        balanceTotalDineroJugador.textContent = juego.jugador.balance;
-        dineroApostado.textContent = juego.apuesta;
-        cartasRepartidasTotales.textContent = 40 - juego.baraja.cartas.length;
-    }
+    // Informacion general de la partida
+    balanceTotalDineroJugador.textContent = juego.jugador.balance;
+    dineroApostado.textContent = juego.apuesta;
+    cartasRepartidasTotales.textContent = 40 - juego.baraja.cartas.length;
+}
+
 
     pedirCartaBtn.addEventListener("click", function() {
         if (!juego.finalizado) {

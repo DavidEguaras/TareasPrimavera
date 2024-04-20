@@ -1,26 +1,21 @@
-import { Jugador } from "./jugador.js";
+import { jugador } from "./jugador.js";
 
-export class Banca {
+
+
+export class Banca extends Jugador {
     constructor() {
-        this.nombre = 'Banca';
-        this.mano = [];
+        super('Banca');
     }
 
+    //Antes de recibir una carta, la banca calculara su puntuacion, 
+    //si esta es menor o igual que 5.5, la banca no cogera carta
     recibirCarta(carta) {
-        if (this.calcularPuntuacion() <= 5.5){
+        if (this.calcularPuntuacion() <= 5.5) {
             this.mano.push(carta);
         }
     }
 
-    calcularPuntuacion() {
-        let puntuacion = 0;
-        this.mano.forEach(carta => {
-            puntuacion += carta.valor;
-        });
-        return puntuacion;
-    }
-
-    reiniciarMano() {
-        this.mano = [];
+    imprimirManoBanca(){
+        return this.mano.map(carta => `<li>La banca tiene${this.mano.length} cartas</li>`);
     }
 }

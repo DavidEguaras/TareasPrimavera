@@ -1,33 +1,37 @@
 import { Carta } from "./carta.js";
-
-export class Jugador{
-    constructor(nombre){
+export class Jugador {
+    constructor(nombre) {
         this.nombre = nombre;
         this.mano = [];
         this.balance = 0;
     }
 
-    recibirCarta(cartaRecibida){
+    recibirCarta(cartaRecibida) {
         this.mano.push(cartaRecibida);
     }
 
-    calcularPuntuacion(){
+    calcularPuntuacion() {
         let puntuacion = 0;
         this.mano.forEach(carta => {
-            puntuacion += carta.valor
+            puntuacion += carta.valor;
         });
         return puntuacion;
     }
 
-    incrementarBalance(incremento){
+    incrementarBalance(incremento) {
         this.balance += incremento;
     }
 
-    decrementarBalance(decremento){
+    decrementarBalance(decremento) {
         this.balance -= decremento;
     }
 
     reiniciarMano() {
         this.mano = [];
     }
+
+    imprimirMano(){
+        return this.mano.map(carta => `<li>${carta.imprimirCarta()}</li>`);
+    }
 }
+

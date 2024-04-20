@@ -4,4 +4,8 @@ export class Carta {
         this.palo = palo;
         this.valor = valor;
     }
+
+    imprimirCarta() {
+        return `${this.nombre} de ${this.palo}`;
+    }    
 }
