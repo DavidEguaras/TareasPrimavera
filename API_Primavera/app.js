@@ -1,5 +1,17 @@
 const express = require('express');
 const cors = require('cors');
+const mysql = require('mysql2');
+const dt = mysql.createConnection({
+    host: '127.0.0.1',
+    port: 3307,
+    user: 'alumno',
+    password: 'alumnoPassword',
+    database: 'ejemplo00'
+});
+
+db.connect((err) =>{
+    
+})
 
 
 const app = express();
