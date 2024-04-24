@@ -1,10 +1,15 @@
 // Importamos la clase Juego desde el archivo
 import { Juego } from "./clases/juego.js";
+
+
 let nombreJugador;
 let apuesta;
 const pantallaJugador = document.getElementById("pantallaJugador");
-const divBotones = document.getElementById("divBotones")
+const divBotones = document.getElementById("divBotones");
+
+
 iniciarEventos();
+
 
 //Evento para el nombre, cuando se introduce, se agrega el html necesario para la apuesta
 function iniciarEventos(){
@@ -15,7 +20,7 @@ function iniciarEventos(){
         pantallaJugador.innerHTML = "";
         pantallaJugador.innerHTML = `
             <label for="apuestaInput">Introduce la apuesta</label>
-            <input type="text" id="apuestaInput" placeholder="Ingresa tu apuesta"><br>
+            <input type="number" id="apuestaInput" placeholder="Ingresa tu apuesta"><br>
             <button type="button" id="submitApuesta">Introducir Apuesta</button>
         `;
     
@@ -26,28 +31,25 @@ function iniciarEventos(){
             const nombreJugador = document.getElementById("nombreJugadorHeader").textContent;
             pantallaJugador.innerHTML = "";
             divBotones.innerHTML = `
-                <button type="button" id="reiniciarButton">Reiniciar Juego</button>
                 <button type="button" id="pedirCartaButton">Pedir Carta</button>
                 <button type="button" id="plantarseButton">Plantarse</button>
             `;
+            //----------------SE INICIA EL JUEGO!!----------------
             iniciarJuego(nombreJugador, apuesta);
+             //----------------SE INICIA EL JUEGO!!----------------
             
         });
         
     });
 }
 
-
-
 // Función para iniciar el juego
 function iniciarJuego(nombreJugador, apuesta) {
     //--------------------------CONSTANTES Y ELEMENTOS--------------------------
     const pedirCartaBtn = document.getElementById("pedirCartaButton");
     const plantarseBtn = document.getElementById("plantarseButton");
-    const reiniciarBtn = document.getElementById("reiniciarButton");
     const subseccionBanca = document.getElementById("subseccionBanca");
     const balanceTotalDineroJugador = document.getElementById("balanceTotalDineroJugador");
-    const dineroApostado = document.getElementById("dineroApostado");
     const mensajeFinPartida = document.getElementById("mensajeFinPartida");
     const cartasBancaFinPartida = document.getElementById("cartasBancaFinPartida");
     //--------------------------CONSTANTES Y ELEMENTOS--------------------------
@@ -89,25 +91,7 @@ function iniciarJuego(nombreJugador, apuesta) {
     }
 
     //================================================EVENTOS================================================
-    //-------------BOTON DE REINCIO-------------
-    reiniciarBtn.addEventListener("click", function() {
-        // Limpiar el contenido de la pantalla del jugador y los botones
-        pantallaJugador.innerHTML = "";
-        divBotones.innerHTML = "";
-        document.getElementById("nombreJugadorHeader").textContent = "";
-        mensajeFinPartida.innerText = "";
-
-        // Mostrar nuevamente el formulario para introducir el nombre
-        pantallaJugador.innerHTML = `
-            <label for="nombreJugadorInput">Introduce el nombre:</label>
-            <input type="text" id="nombreJugadorInput" placeholder="Ingrese su nombre"><br>
-            <button type="button" id="submitNombre">Aceptar</button>
-        `;
-
-        //Volvemos a iniciar los escuchadores para los eventos del nombre y la apuesta
-        iniciarEventos();
-    });
-
+    
 
     //-------------BOTON DE PEDIR CARTA-------------
     pedirCartaBtn.addEventListener("click", function() {
@@ -119,27 +103,62 @@ function iniciarJuego(nombreJugador, apuesta) {
             if (juego.jugador.calcularPuntuacion() > 7.5) {
                 mensajeFinPartida.innerText = juego.finalizar();
                 actualizarInterfaz();
+                verCartasBanca();
+                agregarBotonReinicio();
             }
         }
     });
-
-
     //-------------BOTON DE PLANTARSE-------------
     plantarseBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
             mensajeFinPartida.innerText = juego.finalizar();
             actualizarInterfaz();
-             cartasBancaFinPartida.innerHTML = `
-            <h2>La BANCA tenia las cartas:</h2>
-            <ul>
-                ${juego.banca.imprimirMano().join('')}
-            </ul>
-        `;
+            verCartasBanca();
+            agregarBotonReinicio();
         }
     });
     //================================================EVENTOS================================================
 
+    function verCartasBanca(){
+        cartasBancaFinPartida.innerHTML = `
+        <h5>La BANCA tenia las cartas:</h5>
+        <ul>
+            ${juego.banca.imprimirMano().join('')}
+        </ul>
+    `;
+    }
 
+    function agregarBotonReinicio(){
+        divBotones.innerHTML = `
+            <button type="button" id="reiniciarButton">Reiniciar Juego</button>
+        `;
+        const reiniciarBtn = document.getElementById("reiniciarButton");
+        //-------------BOTON DE REINCIO-------------
+        reiniciarBtn.addEventListener("click", function() {
+            // Limpiar el contenido de la pantalla del jugador y los botones
+            pantallaJugador.innerHTML = "";
+            divBotones.innerHTML = "";
+            document.getElementById("nombreJugadorHeader").textContent = "";
+            mensajeFinPartida.innerText = "";
+            cartasBancaFinPartida.innerText = "";
+
+            // Mostrar nuevamente el formulario para introducir el nombre
+            pantallaJugador.innerHTML = `
+                <label for="nombreJugadorInput">Introduce el nombre:</label>
+                <input type="text" id="nombreJugadorInput" placeholder="Ingrese su nombre"><br>
+                <button type="button" id="submitNombre">Aceptar</button>
+            `;
+            subseccionBanca.innerHTML = `
+            <h2>BANCA</h2>
+            <ul>
+                
+            </ul>
+        `;
+
+            //Volvemos a iniciar los escuchadores para los eventos del nombre y la apuesta
+            iniciarEventos();
+        });
+    }
 
     //comprobamos si la puntuacion del jugador es > de 7,5, si lo es finalizamos el juego
     if(juego.jugador.calcularPuntuacion() > 7.5){
