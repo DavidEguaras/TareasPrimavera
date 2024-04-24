@@ -57,6 +57,7 @@ function iniciarJuego(nombreJugador, apuesta) {
     const juego = new Juego(apuesta, nombreJugador);
     juego.iniciarJuego();
     actualizarInterfaz();
+    cartasBancaFinPartida.innerHTML = "";
 
 
 
