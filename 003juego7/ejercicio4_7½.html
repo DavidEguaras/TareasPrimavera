@@ -43,66 +43,65 @@
             background-color: #eaeaea;
         }
 
+        #nombreJugadorHeader{
+            font-size: 2em;
+        }
+
+        #pantallaJugador label,
+        #pantallaJugador input,
+        #pantallaJugador button, #divBotones button{
+            font-size: 1.2em;
+        }
         footer {
             background-color: #333;
             color: #fff;
             padding: 10px;
             text-align: center;
         }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Casino Beneitez</h1>
-        <h2>Juego de Cartas: 7,5</h2>
-    </header>
+<header>
+    <h1>Casino Beneitez</h1>
+    <h2>Juego de Cartas: 7,5</h2>
+</header>
 
-    <main>
-        <section>
-            <div class="subseccion" id="subseccionBanca">
-                <h2>BANCA</h2>
-                <div id="numero de cartas banca:"></div>
+<main>
+    <section>
+        <div class="subseccion" id="subseccionBanca">
+            <h2>BANCA</h2>
+            <div id="cartasBanca"></div>
+        </div>
+
+        <div class="subseccion" id="subseccionJugador">
+            <h1 id="nombreJugadorHeader"></h1>
+            <div id="pantallaJugador">
+                <label for="nombreJugadorInput">Introduce el nombre:</label>
+                <input type="text" id="nombreJugadorInput" placeholder="Ingrese su nombre"><br>
+                <button type="button" id="submitNombre">Aceptar</button>
             </div>
+            <div id="divBotones"></div>
+        </div>
+    </section>
+        
+    <section>
+        <h2>Panel de Juego</h2>
+        <div>Balance de Dinero del Jugador: 
+            <p id="balanceTotalDineroJugador"></p>
+        </div>
+        <div>
+            <h1>---Estatus de la partida----</h1>
+            <h2 id="mensajeFinPartida">En curso</h2>
+            <ul id="cartasBancaFinPartida"></ul>
+        </div>
+    </section>
+</main>
 
-            <div class="subseccion">
-                <h2 id="nombreJugadorHeader">Jugador</h2>
-                <div id="subseccionJugador"></div>
-                <form id="formNombreApuesta">
-                    <label for="nombreJugadorInput">Nombre del jugador:</label>
-                    <input type="text" id="nombreJugadorInput" placeholder="Ingrese su nombre"><br>
-                    <label for="apuesta">Apuesta</label>
-                    <input type="number" id="apuesta" placeholder="Ingrese cantidad a apostar">
-                    <br>
-                    <button type="submit" id="submitNombre">Aceptar</button>
-                </form>
-
-                <button id="pedirCartaButton">Pedir Carta</button> ---
-                <button id="plantarseButton">Plantarse</button></div>
-            </div>
-        </section>
-
-        <section>
-            <div>
-                <h2>--Informacion de la sesion--</h2>
-                <h4>Dinero Ganado por el Jugador: </h4>
-                <p id="balanceTotalDineroJugador"></p>
-            </div>
-            <div>
-                
-                <h3>Informacion de la partida</h3> 
-                <h1 id="mensajeFinPartida"></h1>   
-                <h4>Dinero Apostado:</h4>
-                <p id="dineroApostado"></p>
-                <h4>Cartas Repartidas:</h4>
-                <p id="cartasRepartidasTotales"></p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Examen 22 de febrero de 2024 - © DAW2 DWEC en IES "Claudio Moyano" </p>
-    </footer>
-    <script type="module" src="js/app.js"></script>
+<footer>
+    <p>Examen 22 de febrero de 2024 - © DAW2 DWEC en IES "Claudio Moyano" </p>
+</footer>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

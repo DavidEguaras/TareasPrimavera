@@ -13,6 +13,7 @@ export class Juego {
 
     iniciarJuego() {
         this.baraja.barajar();
+        this.repartirCartas();
     }
 
     repartirCartas() {

@@ -1,4 +1,6 @@
+// jugador.js
 import { Carta } from "./carta.js";
+
 export class Jugador {
     constructor(nombre) {
         this.nombre = nombre;
@@ -34,4 +36,3 @@ export class Jugador {
         return this.mano.map(carta => `<li>${carta.imprimirCarta()}</li>`);
     }
 }
-

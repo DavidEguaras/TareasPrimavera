@@ -1,10 +1,10 @@
-import { jugador } from "./jugador.js";
+import { Jugador } from "./jugador.js";
 
 
 
 export class Banca extends Jugador {
-    constructor() {
-        super('Banca');
+    constructor(nombre = "La Banca") {
+        super(nombre);
     }
 
     //Antes de recibir una carta, la banca calculara su puntuacion, 
@@ -16,6 +16,11 @@ export class Banca extends Jugador {
     }
 
     imprimirManoBanca(){
-        return this.mano.map(carta => `<li>La banca tiene${this.mano.length} cartas</li>`);
+        let result = [];
+        for (let i = 0; i < this.mano.length; i++) {
+            result.push(`<li>La banca tiene ${i + 1} carta(s)</li>`);
+        }
+        return result;
     }
+    
 }
