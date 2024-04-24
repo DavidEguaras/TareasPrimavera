@@ -1,6 +1,5 @@
 // Importamos la clase Juego desde el archivo
 import { Juego } from "./clases/juego.js";
-
 let nombreJugador;
 let apuesta;
 const pantallaJugador = document.getElementById("pantallaJugador");
