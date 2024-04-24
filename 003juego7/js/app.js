@@ -22,17 +22,16 @@ function iniciarEventos(){
     
         //Evento para la apuesta, cuando se introduce, se agrega el html de los botones del juego
         document.getElementById("submitApuesta").addEventListener("click", function(event) {
-           
-                event.preventDefault();
-                apuesta = parseFloat(document.getElementById("apuestaInput").value);
-                const nombreJugador = document.getElementById("nombreJugadorHeader").textContent;
-                pantallaJugador.innerHTML = "";
-                divBotones.innerHTML = `
-                    <button type="button" id="reiniciarButton">Reiniciar Juego</button>
-                    <button type="button" id="pedirCartaButton">Pedir Carta</button>
-                    <button type="button" id="plantarseButton">Plantarse</button>
-                `;
-                iniciarJuego(nombreJugador, apuesta);
+            event.preventDefault();
+            apuesta = parseFloat(document.getElementById("apuestaInput").value);
+            const nombreJugador = document.getElementById("nombreJugadorHeader").textContent;
+            pantallaJugador.innerHTML = "";
+            divBotones.innerHTML = `
+                <button type="button" id="reiniciarButton">Reiniciar Juego</button>
+                <button type="button" id="pedirCartaButton">Pedir Carta</button>
+                <button type="button" id="plantarseButton">Plantarse</button>
+            `;
+            iniciarJuego(nombreJugador, apuesta);
             
         });
         
@@ -43,6 +42,7 @@ function iniciarEventos(){
 
 // Función para iniciar el juego
 function iniciarJuego(nombreJugador, apuesta) {
+    //--------------------------CONSTANTES Y ELEMENTOS--------------------------
     const pedirCartaBtn = document.getElementById("pedirCartaButton");
     const plantarseBtn = document.getElementById("plantarseButton");
     const reiniciarBtn = document.getElementById("reiniciarButton");
@@ -51,13 +51,16 @@ function iniciarJuego(nombreJugador, apuesta) {
     const dineroApostado = document.getElementById("dineroApostado");
     const mensajeFinPartida = document.getElementById("mensajeFinPartida");
     const cartasBancaFinPartida = document.getElementById("cartasBancaFinPartida");
-    let jugador; 
-    // Creamos una instancia del juego
+    //--------------------------CONSTANTES Y ELEMENTOS--------------------------
+
+
+    //Se inicia el juego
     const juego = new Juego(apuesta, nombreJugador);
     juego.iniciarJuego();
     actualizarInterfaz();
 
-    // Función para actualizar la interfaz
+
+
     function actualizarInterfaz() {
         // --Info de la banca--
         subseccionBanca.innerHTML = `
@@ -85,15 +88,14 @@ function iniciarJuego(nombreJugador, apuesta) {
 
     }
 
-    //===========================EVENTOS===========================
-    // Funcionalidad del botón de reinicio
+    //================================================EVENTOS================================================
+    //-------------BOTON DE REINCIO-------------
     reiniciarBtn.addEventListener("click", function() {
-           // Limpiar el contenido de la pantalla del jugador y los botones
+        // Limpiar el contenido de la pantalla del jugador y los botones
         pantallaJugador.innerHTML = "";
         divBotones.innerHTML = "";
-
-        // Restablecer el nombre del jugador
         document.getElementById("nombreJugadorHeader").textContent = "";
+        mensajeFinPartida.innerText = "";
 
         // Mostrar nuevamente el formulario para introducir el nombre
         pantallaJugador.innerHTML = `
@@ -102,11 +104,12 @@ function iniciarJuego(nombreJugador, apuesta) {
             <button type="button" id="submitNombre">Aceptar</button>
         `;
 
-        // Limpiar mensaje de fin de partida
-        mensajeFinPartida.innerText = "";
+        //Volvemos a iniciar los escuchadores para los eventos del nombre y la apuesta
         iniciarEventos();
     });
-    //------Evento para pedir carta-------
+
+
+    //-------------BOTON DE PEDIR CARTA-------------
     pedirCartaBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
             //Por cada vez que el jugador pide una carta, la banca pedirá otra si su puntuación es menor o igual que 5 
@@ -119,7 +122,9 @@ function iniciarJuego(nombreJugador, apuesta) {
             }
         }
     });
-    //-------Evento para plantarse-------
+
+
+    //-------------BOTON DE PLANTARSE-------------
     plantarseBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
             mensajeFinPartida.innerText = juego.finalizar();
@@ -132,7 +137,9 @@ function iniciarJuego(nombreJugador, apuesta) {
         `;
         }
     });
-    //===========================EVENTOS===========================
+    //================================================EVENTOS================================================
+
+
 
     //comprobamos si la puntuacion del jugador es > de 7,5, si lo es finalizamos el juego
     if(juego.jugador.calcularPuntuacion() > 7.5){
