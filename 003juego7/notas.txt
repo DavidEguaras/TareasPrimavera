@@ -4,6 +4,7 @@
  largo de varias partidas
 ❌-(comprobar el nombre que se ha introducido y el del LS, 
 si coinciden el balance del jugador pasa a ser el del LS)
+❌-Retocar los estilos para que quede mejor
 
 ✅Hacer distintas "pantallas" para la info del jugador: 
 (se borra el contenido del div por cada cambio)
