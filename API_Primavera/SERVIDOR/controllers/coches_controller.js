@@ -15,10 +15,10 @@ const getCoches = (req, res) => { //http://127.0.0.1:3000/coches
 }
 
 //metodo para obtener un registro por ID
-/*
-const getCocheById = (req, res) => { //http://127.0.0.1:3000/coches
+
+const getCocheById = (req, res) => { //http://127.0.0.1:3000/coches/?
     const idRegistro = req.params.id;
-    db.query('SELECT * FROM coches WHERE id = ?,', [idRegistro], (err, resultados) => {
+    db.query('SELECT * FROM coches WHERE id = ?', [idRegistro], (err, resultados) => {
         if (err) {
             console.error('Error al obtener el registro');
             res.status(500).json({error: 'Error interno del servidor'});
@@ -33,24 +33,7 @@ const getCocheById = (req, res) => { //http://127.0.0.1:3000/coches
         }
         console.log();
     });
-}*/
-const getCocheById = (req, res) =>{
-   const idRegistro = req.params.id;
-   db.query('SELECT * FROM coches WHERE id = ?', [idRegistro], (err, resultados)=>{
-      if(err){
-        console.error('Error al obtener el registro:', err);
-        res.status(500).json({eror: 'Error interno del servidore'});
-      } else {
-        // verificar si ese encontró el registro
-        if (resultados.length > 0) {
-          res.json(resultados[0]); // devuelve el primer resultado (que debería ser único);
-        } else {
-          res.status(404).json({error: 'registro no encontrado'});
-        }
-      }
-  })
 }
-
 
 const crearCoche = (req, res) => {
     const {mensaje} = req.body;
