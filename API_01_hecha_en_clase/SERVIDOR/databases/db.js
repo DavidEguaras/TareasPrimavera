@@ -2,7 +2,7 @@ const mysql = require('mysql');  // se instala con: npm i mysql
 const db = mysql.createConnection({
     //propiedad host donde se ubica la base de datos Mysql
     host: '0.0.0.0',
-    port: 3306,     // se puede camiar el puerto de mysql
+    port: 3307,     // se puede camiar el puerto de mysql
   
     //usuario base de datos (por defecto sería root, pero hay que evitarlo)
     user: 'ejemplouser',
