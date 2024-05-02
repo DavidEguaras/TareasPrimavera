@@ -43,6 +43,8 @@ function iniciarEventos(){
     });
 }
 
+
+
 // Función para iniciar el juego
 function iniciarJuego(nombreJugador, apuesta) {
     //--------------------------CONSTANTES Y ELEMENTOS--------------------------
@@ -54,13 +56,40 @@ function iniciarJuego(nombreJugador, apuesta) {
     const cartasBancaFinPartida = document.getElementById("cartasBancaFinPartida");
     //--------------------------CONSTANTES Y ELEMENTOS--------------------------
 
+    // Función para recuperar el jugador del Local Storage si existe y coincide el nombre
+    function obtenerJugadorLocalStorage(nombreJugador) {
+        const jugadorGuardado = localStorage.getItem('jugador');
+        if (jugadorGuardado) {
+            const jugadorGuardadoObj = JSON.parse(jugadorGuardado);
+            const nombreJugadorGuardado = jugadorGuardadoObj.nombre;
+            if (nombreJugador === nombreJugadorGuardado) {
+                return jugadorGuardadoObj;
+            }
+        }
+        return null;
+    }
 
-    //Se inicia el juego
+    // Recuperar jugador del Local Storage si coincide con el nombre proporcionado
+    const jugadorLocalStorage = obtenerJugadorLocalStorage(nombreJugador);
+
+    if (jugadorGuardado) {
+        const jugadorGuardadoObj = JSON.parse(jugadorGuardado);
+        const nombreJugadorGuardado = jugadorGuardadoObj.nombre;
+        if (nombreJugador === nombreJugadorGuardado) {
+            jugador = jugadorGuardadoObj;
+        } else {
+            jugador = new Jugador(nombreJugador);
+        }
+    } else {
+        jugador = new Jugador(nombreJugador);
+    }
+
+    //--------------------------INICIO DEL JUEGO--------------------------
     const juego = new Juego(apuesta, nombreJugador);
+    juego.jugador = jugador;
     juego.iniciarJuego();
     actualizarInterfaz();
     cartasBancaFinPartida.innerHTML = "";
-
 
 
     function actualizarInterfaz() {
@@ -86,13 +115,9 @@ function iniciarJuego(nombreJugador, apuesta) {
         if (juego.finalizado) {
             balanceTotalDineroJugador.textContent += juego.jugador.balance;
         }
-        
-
     }
 
     //================================================EVENTOS================================================
-    
-
     //-------------BOTON DE PEDIR CARTA-------------
     pedirCartaBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
@@ -102,6 +127,7 @@ function iniciarJuego(nombreJugador, apuesta) {
             actualizarInterfaz();
             if (juego.jugador.calcularPuntuacion() > 7.5) {
                 mensajeFinPartida.innerText = juego.finalizar();
+                localStorage.setItem('jugador', JSON.stringify(juego.jugador));
                 actualizarInterfaz();
                 verCartasBanca();
                 agregarBotonReinicio();
@@ -112,6 +138,7 @@ function iniciarJuego(nombreJugador, apuesta) {
     plantarseBtn.addEventListener("click", function() {
         if (!juego.finalizado) {
             mensajeFinPartida.innerText = juego.finalizar();
+            localStorage.setItem('jugador', JSON.stringify(juego.jugador));
             actualizarInterfaz();
             verCartasBanca();
             agregarBotonReinicio();
@@ -163,5 +190,6 @@ function iniciarJuego(nombreJugador, apuesta) {
     //comprobamos si la puntuacion del jugador es > de 7,5, si lo es finalizamos el juego
     if(juego.jugador.calcularPuntuacion() > 7.5){
         juego.finalizar();
+        localStorage.setItem('jugador', JSON.stringify(juego.jugador));
     }
 }
