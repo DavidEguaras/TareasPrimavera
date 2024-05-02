@@ -72,10 +72,28 @@ const putCoche = (req, res) => {
     });
 }
 
+const deleteCocheById = (req, res) => {
+  const idRegistro = req.params.id;
+  db.query('DELETE * FROM coches WHERE id = ?', [idRegistro], (err, resultados)=>{
+     if(err){
+       console.error('Error al obtener el registro:', err);
+       res.status(500).json({eror: 'Error interno del servidore'});
+     } else {
+       // verificar si ese encontró el registro
+       if (resultados.length > 0) {
+         res.json(resultados[0]); // devuelve el primer resultado (que debería ser único);
+       } else {
+         res.status(404).json({error: 'registro no encontrado'});
+       }
+     }
+ })
+}
+
 module.exports={
     getCoches,
     crearCoche,
     getCocheById,
     patchCoche,
-    putCoche
+    putCoche,
+    deleteCocheById
 }
