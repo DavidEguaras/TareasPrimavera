@@ -8,7 +8,7 @@ document.getElementById('getCiudad').addEventListener('submit', (event)=>{
         .then(datosCrudos=>{
             if(!datosCrudos.ok){
                 // lanzamos un excepción (error) que intercepta el catch()
-                throw `Cuidado: ${datosCrudos.status}: ${datosCrudos.statusText}`
+                throw `Cuidado: ${datosCrudos.status}: ${datosCrudos.statusText}`;
             }
             console.log(datosCrudos);
             return datosCrudos.json();
