@@ -14,25 +14,35 @@
     </header>
 
     <main class="container mt-5">
-        <div id="divGetCoches">
+        <div id="divGetCoches" class="mb-5">
+            <h2>Peticion 1: Consultar todos los registros de la tabla</h2>
             <button class="btn btn-primary" onclick="getCoches()">Obtener Coches</button>
-            <ul id="todosLosCoches" class="list-group mt-3">
-                
+            <ul id="todosLosCoches" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Todos nuestros coches:</h5>
             </ul>
         </div>
     
     
-        <div>
-    
+        <div id="divGetCoches">
+            <h2>Peticion 2: Consultar un registro indicando su id</h2>
+            <form method="get" id="getCocheByIDForm" name="getCocheByID">
+                <div class="form-inline">
+                    <input type="text" class="form-control mr-2" name="idCoche" id="idCoche" placeholder="Introducir ID...">
+                    <button class="btn btn-primary" type="submit">Obtener Coches</button>
+                </div>
+            </form>
+            
+            <ul id="cochesID" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Coche con ese id:</h5>
+                <ul id="cocheID">
+
+                </ul>
+            </ul>
         </div>
     
     </main>
     
     <footer></footer>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>
