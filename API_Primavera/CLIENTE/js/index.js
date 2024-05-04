@@ -52,30 +52,32 @@ document.getElementById('getCocheByIDForm').addEventListener('submit', (event) =
 //Evento para agregar un coche al registro
 document.getElementById('postCocheForm').addEventListener('submit', (event) => {
     event.preventDefault();
-    const datosBody={
+    const datosBody = {
         nombreCoche: document.getElementById('nombreCoche').value,
         cantidad: document.getElementById('cantidad').value
-    }
+    };
 
-    fetch(url, '/coches', {
+    fetch(url + '/coches', {
         method: 'POST',
-        body: JSON.stringify(datosBody), 
-        headers:{
+        body: JSON.stringify(datosBody),
+        headers: {
             'Content-Type': 'application/json'
         }
-    }).then(datosCrudos=>{
-        if(!datosCrudos.ok){
-            // lanzamos un excepción (error) que intercepta el catch()
-            throw `Cuidado: ${datosCrudos.status}: ${datosCrudos.statusText}`
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
         }
-        console.log(datosCrudos);
-        return datosCrudos.json();
-    }).then(datosObjeto =>{
-        document.getElementById('nuevoCoche').innerHTML += datosObjeto.nombre+" - "+datosObjeto.cantidad;
+        return response.json();
+    })
+    .then(datosObjeto => {
+        // Procesa los datos de la respuesta aquí
+        document.getElementById('nuevoCoche').innerHTML = `<li>${datosObjeto.nombreCoche} - ${datosObjeto.cantidad}</li>`;
         console.log(datosObjeto);
     })
-    .catch(error=>console.log(error));
+    .catch(error => console.error(error));
 });
+
 //--------------------------------------------!PETICIONES POST------------------------------------------------
 
 

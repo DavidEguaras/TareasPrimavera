@@ -31,17 +31,18 @@ const getCocheById = (req, res) => {
 
 // Método para crear un coche
 const crearCoche = (req, res) => {
-    const { nuevoNombre, cantidad } = req.body;
+    const { nombreCoche, cantidad } = req.body; // Aquí cambia de 'nuevoNombre' a 'nombreCoche'
     // Insertar datos en la base de datos
-    db.query('INSERT INTO coches (nombre, cantidad) VALUES (?, ?)', [nuevoNombre, cantidad], (err, resultado) => {
+    db.query('INSERT INTO coches (nombre, cantidad) VALUES (?, ?)', [nombreCoche, cantidad], (err, resultado) => {
         if (err) {
             console.error('Error al guardar datos en la base de datos:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
         } else {
-            res.json({ recibido: true, nuevoNombre, cantidad, id: resultado.insertId });
+            res.json({ recibido: true, nombreCoche, cantidad, id: resultado.insertId });
         }
     });
 };
+
 
 const patchCoche = (req, res) => {
     const { nuevoNombre, cantidad } = req.body;
