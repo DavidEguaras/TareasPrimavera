@@ -31,7 +31,7 @@ const getCocheById = (req, res) => {
 
 // Método para crear un coche
 const crearCoche = (req, res) => {
-    const { nombreCoche, cantidad } = req.body; // Aquí cambia de 'nuevoNombre' a 'nombreCoche'
+    const { nombreCoche, cantidad } = req.body;
     // Insertar datos en la base de datos
     db.query('INSERT INTO coches (nombre, cantidad) VALUES (?, ?)', [nombreCoche, cantidad], (err, resultado) => {
         if (err) {
@@ -43,27 +43,26 @@ const crearCoche = (req, res) => {
     });
 };
 
-
 const patchCoche = (req, res) => {
     const { nuevoNombre, cantidad } = req.body;
-    db.query('UPDATE coches SET nombre = ?, cantidad = ?', [nuevoNombre, cantidad], (err, resultado) => {
+    db.query('UPDATE coches SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
         if (err) {
-            console.error('Error al guardar datos en la base de datos:', err);
+            console.error('Error al actualizar datos en la base de datos:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
         } else {
-            res.json({ recibido: true, nuevoNombre, cantidad, id: resultado.insertId });
+            res.json({ actualizado: true, nuevoNombre, cantidad, id: req.params.id });
         }
     });
 };
 
 const putCoche = (req, res) => {
     const { nuevoNombre, cantidad } = req.body;
-    db.query('INSERT INTO coches (nombre, cantidad) VALUES (?, ?)', [nuevoNombre, cantidad], (err, resultado) => {
+    db.query('UPDATE coches SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
         if (err) {
-            console.error('Error al guardar datos en la base de datos:', err);
+            console.error('Error al actualizar datos en la base de datos:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
         } else {
-            res.json({ recibido: true, nuevoNombre, cantidad, id: resultado.insertId });
+            res.json({ actualizado: true, nuevoNombre, cantidad, id: req.params.id });
         }
     });
 };

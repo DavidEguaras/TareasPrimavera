@@ -77,13 +77,39 @@ document.getElementById('postCocheForm').addEventListener('submit', (event) => {
     })
     .catch(error => console.error(error));
 });
-
 //--------------------------------------------!PETICIONES POST------------------------------------------------
 
 
 
 
 //--------------------------------------------PETICIONES PUT------------------------------------------------
+document.getElementById('postCocheForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const datosBody = {
+        nombreCoche: document.getElementById('nuevoNombre').value,
+        cantidad: document.getElementById('cantidad').value
+    };
+
+    fetch(url + '/coches', {
+        method: 'PUT',
+        body: JSON.stringify(datosBody),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(datosObjeto => {
+        // Procesa los datos de la respuesta aquí
+        document.getElementById('nuevoCoche').innerHTML = `<li>${datosObjeto.nombreCoche} - ${datosObjeto.cantidad}</li>`;
+        console.log(datosObjeto);
+    })
+    .catch(error => console.error(error));
+});
 //--------------------------------------------!PETICIONES PUT------------------------------------------------
 
 
@@ -91,3 +117,8 @@ document.getElementById('postCocheForm').addEventListener('submit', (event) => {
 
 //--------------------------------------------PETICIONES PATCH------------------------------------------------
 //--------------------------------------------!PETICIONES PATCH------------------------------------------------
+
+
+
+//--------------------------------------------PETICIONES DELETE------------------------------------------------
+//--------------------------------------------!PETICIONES DELETE------------------------------------------------

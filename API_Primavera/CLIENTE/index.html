@@ -24,7 +24,7 @@
         </div>
     
     
-        <div id="divGetCoches"  class="mb-5">
+        <div id="divGetCocheByID"  class="mb-5">
             <h2>Peticion 2: Consultar un registro indicando su id</h2>
             <form method="get" id="getCocheByIDForm" name="getCocheByID">
                 <div class="form-inline">
@@ -55,6 +55,41 @@
             </ul>
         </div>
     
+
+        <div id="divPutCoche" class="mb-5"> 
+            <h2>Peticion 4: Cambiar un registro completamente con PUT</h2>
+            <form method="post" id="postCocheForm" name="postCoche">
+                <h6>ID del coche a cambiar registro:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="idCoche" id="idCoche" placeholder="Introducir ID..." required>
+                <h6>Nombre:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="nuevoNombre" id="nuevoNombre" placeholder="Introducir Nombre..." required>
+                <h6>Cantidad:</h6>
+                <input type="text" class="form-control mr-2" name="cantidad" id="cantidad" placeholder="Introducir Cantidad..." required>
+                <button class="btn btn-primary mt-3" type="submit">Agregar Coche</button>
+            </form>
+
+            <ul id="nuevoCoche" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Registro Agregado:</h5>
+            </ul>
+        </div>
+
+
+        <div id="divPatchCoche" class="mb-5"> 
+            <h2>Peticion 5: Cambiar un registro parcialmente con PATCH</h2>
+            <form method="post" id="postCocheForm" name="postCoche">
+                <h6>ID del coche a cambiar registro:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="idCoche" id="idCoche" placeholder="Introducir ID..." required>
+                <h6>Nombre:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="nuevoNombre" id="nuevoNombre" placeholder="Introducir Nombre...">
+                <h6>Cantidad:</h6>
+                <input type="text" class="form-control mr-2" name="cantidad" id="cantidad" placeholder="Introducir Cantidad...">
+                <button class="btn btn-primary mt-3" type="submit">Agregar Coche</button>
+            </form>
+
+            <ul id="nuevoCoche" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Registro Agregado:</h5>
+            </ul>
+        </div>
     </main>
     
     <footer></footer>
