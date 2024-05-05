@@ -125,11 +125,23 @@ document.getElementById('putCocheForm').addEventListener('submit', (event) => {
 document.getElementById('patchCocheForm').addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const idCoche = document.getElementById('idCochePATCH').value;;
-    const datosBody = {
-        nuevoNombre: document.getElementById('nuevoNombrePATCH').value,
-        cantidad: document.getElementById('cantidadPATCH').value
-    };
+    const idCoche = document.getElementById('idCochePATCH').value;
+    const nuevoNombre = document.getElementById('nuevoNombrePATCH').value;
+    const cantidad = document.getElementById('cantidadPATCH').value;
+
+    //comprobamos que al menos se introduce uno de los campos
+    if (!nuevoNombre && !cantidad) {
+        console.error("Por favor, introduce al menos un campo para actualizar.");
+        return;
+    }
+
+    const datosBody = {};
+    if (nuevoNombre) {
+        datosBody.nuevoNombre = nuevoNombre;
+    }
+    if (cantidad) {
+        datosBody.cantidad = cantidad;
+    }
 
     fetch(url + '/coches/' + idCoche, {
         method: 'PATCH',
@@ -152,10 +164,29 @@ document.getElementById('patchCocheForm').addEventListener('submit', (event) => 
     })
     .catch(error => console.error(error));
 });
+
 //--------------------------------------------!PETICIONES PATCH------------------------------------------------
 
 
 
 //--------------------------------------------PETICIONES DELETE------------------------------------------------
+document.getElementById('DeleteCocheByID').addEventListener('submit', (event) => {
+    event.preventDefault();
 
+    const idCoche = document.getElementById('idCocheDELETE').value;
+
+    fetch(url + '/coches/' + idCoche, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(datosObjeto => {
+        console.log("Coche eliminado con éxito:", datosObjeto);
+    })
+    .catch(error => console.error(error));
+});
 //--------------------------------------------!PETICIONES DELETE------------------------------------------------

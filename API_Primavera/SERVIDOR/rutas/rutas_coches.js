@@ -17,5 +17,8 @@ rutasCoches.patch('/:id', cochesController.patchCoche);
 // Ruta para modificar por completo el registro de un coche
 rutasCoches.put('/:id', cochesController.putCoche);
 
+// Ruta para eliminar por completo el registro de un coche
+rutasCoches.delete('/:id', cochesController.deleteCocheById)
+
 module.exports = rutasCoches;
 

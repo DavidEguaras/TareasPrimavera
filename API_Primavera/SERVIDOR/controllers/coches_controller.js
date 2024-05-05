@@ -67,10 +67,29 @@ const putCoche = (req, res) => {
     });
 };
 
+const deleteCocheById = (req, res) => {
+    const idCoche = req.params.id;
+    // Consulta para eliminar el coche por su ID
+    db.query('DELETE FROM coches WHERE id = ?', [idCoche], (err, resultado) => {
+        if (err) {
+            console.error('Error al eliminar el coche:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        } else {
+            // Verificar si se eliminó algún registro
+            if (resultado.affectedRows > 0) {
+                res.json({ eliminado: true, id: idCoche });
+            } else {
+                res.status(404).json({ error: 'No se encontró ningún coche con el ID proporcionado' });
+            }
+        }
+    });
+};
+
 module.exports = {
     getCoches,
     crearCoche,
     getCocheById,
     patchCoche,
-    putCoche
+    putCoche,
+    deleteCocheById
 };
