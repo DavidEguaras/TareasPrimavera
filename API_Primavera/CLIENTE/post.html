@@ -14,6 +14,7 @@
         </div>
     </header>
 
+
     <main class="container mt-5">
         <div id="divGetCoches" class="mb-5">
             <h2>Peticion 1: Consultar todos los registros de la tabla</h2>
@@ -23,22 +24,26 @@
             </ul>
         </div>
     
-        <div id="divGetCocheByID"  class="mb-5">
-            <h2>Peticion 2: Consultar un registro indicando su id</h2>
-            <form method="get" id="getCocheByIDForm" name="getCocheByID">
-                <div class="form-inline">
-                    <input type="text" class="form-control mr-2" name="idCoche" id="idCocheGET" placeholder="Introducir ID..." required>
-                    <button class="btn btn-primary" type="submit">Obtener Coche</button>
-                </div>
+        
+        <div id="divPostCoche" class="mb-5"> 
+            <h2>Peticion 3: Agregar un nuevo registro</h2>
+            <form method="post" id="postCocheForm" name="postCoche">
+                <h6>Nombre:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="nombreCoche" id="nombreCochePOST" placeholder="Introducir Nombre...">
+                <h6>Cantidad:</h6>
+                <input type="text" class="form-control mr-2" name="cantidad" id="cantidadPOST" placeholder="Introducir Cantidad...">
+                <button class="btn btn-primary mt-3" type="submit">Agregar Coche</button>
             </form>
-            
     
-            <ul id="cocheID" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-                <h5>Coche con ese ID:</h5>
+            <ul id="nuevoCochePOST" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Registro Agregado:</h5>
             </ul>
         </div>
     </main>
     
+
+
+
 
     <script src="js/index.js"></script>
 </body>

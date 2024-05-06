@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <h1 class="text-center">API de coches de David</h1>
+        </div>
+    </header>
+
+
+    <main class="container mt-5">
+        <div id="divGetCoches" class="mb-5">
+            <h2>Peticion 1: Consultar todos los registros de la tabla</h2>
+            <button class="btn btn-primary" onclick="getCoches()">Obtener Coches</button>
+            <ul id="todosLosCoches" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Todos nuestros coches:</h5>
+            </ul>
+        </div>
+    
+    
+        <div id="divDeleteCocheByID" class="mb-5"> 
+            <h2>Peticion 6: Borrar un registro</h2>
+            <form method="post" id="DeleteCocheByID" name="DeleteCocheByID">
+                <h6>ID del coche a borrar del registro:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="idCoche" id="idCocheDELETE" placeholder="Introducir ID..." required>
+                <button class="btn btn-primary mt-3" type="submit">Eliminar Coche</button>
+            </form>
+        </div>
+    </main>
+    
+
+
+    <script src="js/index.js"></script>
+</body>
+</html>
