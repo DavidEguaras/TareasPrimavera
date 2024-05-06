@@ -20,7 +20,7 @@ function getCoches(){
         y se lo pasamos a la ul con id 'todosLosCoches'*/
         .then(datosObjeto => {
             const listaCoches = datosObjeto.map(coche => `<li>${coche.nombre} - ${coche.cantidad}</li>`).join('');
-            document.getElementById('todosLosCoches').innerHTML += listaCoches;
+            document.getElementById('todosLosCoches').innerHTML = listaCoches;
             console.log(datosObjeto);
         })
         .catch(error=>console.log(error));

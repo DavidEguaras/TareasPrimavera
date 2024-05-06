@@ -2,14 +2,17 @@ const db = require('../DATABASES/db.js');
 
 const getCoches = (req, res) => {
     // Consulta a la base de datos
-    db.query('SELECT * FROM coches', (err, resultados) => {
-        if (err) {
-            console.error('Error al obtener datos', err);
-            res.status(500).json({ error: 'Error interno del servidor' });
-        } else {
-            res.json(resultados);
-        }
-    });
+    db.getConnection((err, connection) =>{
+        connection.query('SELECT * FROM coches', (err, resultados) => {
+            if (err) {
+                console.error('Error al obtener datos', err);
+                res.status(500).json({ error: 'Error interno del servidor' });
+            } else {
+                res.json(resultados);
+                connection.release();
+            }
+        });
+    })
 };
 
 const getCocheById = (req, res) => {
