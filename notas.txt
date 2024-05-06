@@ -1,0 +1,7 @@
+-Notacion de puntos y comas
+-Notificacion de error
+-ID en mostrar todo
+-Comprobaciones de formulario
+-Borrar datos en mostrar todo
+-Cambiar los nombres de los botones
+-Indexar las peticiones
