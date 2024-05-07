@@ -12,8 +12,31 @@
     <header class="bg-dark text-white py-4">
         <div class="container">
             <h1 class="text-center">API de coches de David</h1>
-            
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">INDEX</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="get.html">GET</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="post.html">POST</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="delete.html">DELETE</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
+        
     </header>
 
     <main class="container mt-5">
@@ -24,18 +47,48 @@
                 <h5>Todos nuestros coches:</h5>
             </ul>
         </div>
+
+        <div id="divPutCoche" class="mb-5">
+            <h2>Peticion 4: Actualizar un registro con PUT</h2>
+            <form method="post" id="putCocheForm" name="putCoche">
+                <h6>ID del coche a actualizar:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="idCoche" id="idCochePUT" placeholder="Introducir ID..." required>
+                <button class="btn btn-primary mt-3" id="checkIdPut">Comprobar ID del Coche</button>
+                
+                <div id="camposActualizacionPUT" style="display: none;">
+                    <h6>Nombre:</h6>
+                    <input type="text" class="form-control mr-2 mb-3" name="nuevoNombre" id="nuevoNombrePUT" placeholder="Introducir Nombre..." required>
+                    <h6>Cantidad:</h6>
+                    <input type="text" class="form-control mr-2" name="cantidad" id="cantidadPUT" placeholder="Introducir Cantidad..." required>
+                    <button class="btn btn-primary mt-3" type="submit" id="submitPutCoche">Actualizar Coche</button>
+                </div>
+                
+            </form>
+        
+            <ul id="nuevoCochePUT" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Registro Actualizado:</h5>
+            </ul>
+        </div>
+        
+        
     
     
         <div id="divPatchCoche" class="mb-5"> 
             <h2>Peticion 5: Cambiar un registro parcialmente con PATCH</h2>
+
             <form method="post" id="patchCocheForm" name="patchCoche">
                 <h6>ID del coche a cambiar registro:</h6>
                 <input type="text" class="form-control mr-2 mb-3" name="idCoche" id="idCochePATCH" placeholder="Introducir ID..." required>
-                <h6>Nombre:</h6>
-                <input type="text" class="form-control mr-2 mb-3" name="nuevoNombre" id="nuevoNombrePATCH" placeholder="Introducir Nombre...">
-                <h6>Cantidad:</h6>
-                <input type="text" class="form-control mr-2" name="cantidad" id="cantidadPATCH" placeholder="Introducir Cantidad...">
-                <button class="btn btn-primary mt-3" type="submit">Agregar Coche</button>
+                <button class="btn btn-primary mt-3" id="checkIdPatch">Comprobar ID del Coche</button>
+
+                <div id="camposActualizacionPATCH" style="display: none;">
+                    <h6>Nombre:</h6>
+                    <input type="text" class="form-control mr-2 mb-3" name="nuevoNombre" id="nuevoNombrePATCH" placeholder="Introducir Nombre...">
+                    <h6>Cantidad:</h6>
+                    <input type="text" class="form-control mr-2" name="cantidad" id="cantidadPATCH" placeholder="Introducir Cantidad...">
+                    <button class="btn btn-primary mt-3" type="submit">Actualizar Coche</button>
+                </div>
+                
             </form>
     
             <ul id="nuevoCochePATCH" class="list-group mt-3 text-white bg-dark py-4 pl-4"> 
@@ -43,7 +96,11 @@
             </ul>
         </div>
     </main>
-    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/putPatch.js"></script>
 </body>
 </html>

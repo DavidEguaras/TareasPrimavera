@@ -4,4 +4,4 @@
 -Comprobaciones de formulario
 -Borrar datos en mostrar todo
 -Cambiar los nombres de los botones
--Indexar las peticiones
+-Indexar las peticiones✅
