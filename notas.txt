@@ -1,7 +1,7 @@
--Notacion de puntos y comas
--Notificacion de error
--ID en mostrar todo
--Comprobaciones de formulario
--Borrar datos en mostrar todo
--Cambiar los nombres de los botones
+-Notacion de puntos y comas ❌
+-Notificacion de error ❌
+-Comprobaciones de formulario 🟠
+-ID en mostrar todo ✅
+-Borrar datos en mostrar todo✅
+-Cambiar los nombres de los botones✅
 -Indexar las peticiones✅

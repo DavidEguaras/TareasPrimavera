@@ -137,7 +137,6 @@ document.getElementById('submitPatchCoche').addEventListener('submit', (event) =
         console.error(error);
         alert('Hubo un error al actualizar el coche con PATCH');
     });
-
 })
 //--------------------------------------------!PETICIONES PATCH------------------------------------------------
 
