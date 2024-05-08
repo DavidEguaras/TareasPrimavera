@@ -9,4 +9,8 @@
 -Notacion de puntos y comas ❌
 -Notificacion de error ❌
 -Arreglar PATCH
--
+-ID en el resto de peticiones
+-Agregar dos tablas: 
+    (cambiar coches por marca) 
+    +concesionario (id, nombre, idMarca)
+    +movimientos (id, idMarca, idConcesionario, cantidad)

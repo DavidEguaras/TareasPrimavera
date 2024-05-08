@@ -1,7 +1,4 @@
 //--------------------------------------------PETICIONES PUT------------------------------------------------
-
-const { response } = require("express");
-
 // Listener para comprobar la existencia del ID del coche
 document.getElementById('checkIdPut').addEventListener('click', (event) => {
     event.preventDefault();
