@@ -62,6 +62,73 @@ const updateMarcaPut = (event) => {
         alert('Hubo un error al actualizar la marca con PUT');
     });
 };
+
+
+//-----------------CONCESIONARIOS
+// Función para manejar la verificación del ID del Concesionario
+const checkConcesionarioIdPut = (event) => {
+    event.preventDefault();
+
+    const idConcesionario = document.getElementById('idConcesionarioPUT').value;
+
+    fetch(url + '/concesionarios/' + idConcesionario)
+    .then(response => {
+        if (!response.ok) {
+            document.getElementById('camposActualizacionPUT').style.display = 'none';
+            throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(datosObjeto => {
+        document.getElementById('nuevoNombrePUT').value = datosObjeto.nombre;
+        document.getElementById('marcaIDPUT').value = datosObjeto.marcaID;
+        document.getElementById('camposActualizacionPUT').style.display = 'block';
+        document.getElementById('checkIdPut').style.display = 'none';
+    })
+    .catch(error => {
+        console.error(error);
+        alert('No existe ningún concesionario con ese ID');
+    });
+};
+
+// Función para manejar la solicitud de actualización del Concesionario con PUT
+const updateConcesionarioPut = (event) => {
+    event.preventDefault();
+
+    const idConcesionario = document.getElementById('idConcesionarioPUT').value;
+    const nuevoNombre = document.getElementById('nuevoNombrePUT').value;
+    const marcaID = document.getElementById('marcaIDPUT').value;
+
+    const datosBody = {
+        nuevoNombre: nuevoNombre,
+        marcaID: marcaID
+    };
+
+    fetch(url + '/concesionarios/' + idConcesionario, {
+        method: 'PUT',
+        body: JSON.stringify(datosBody),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(datosObjeto => {
+        const nuevoConcesionarioHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.marcaID}</li>`;
+        document.getElementById('nuevoConcesionarioPUT').innerHTML += nuevoConcesionarioHTML;
+
+        console.log("Datos objeto recibidos:", datosObjeto);
+    })
+    .catch(error => {
+        console.error(error);
+        alert('Hubo un error al actualizar el concesionario con PUT');
+    });
+};
+//-----------------CONCESIONARIOS
 //--------------------------------------------!PETICIONES PUT------------------------------------------------
 
 
@@ -131,4 +198,72 @@ const updateMarcaPatch = (event) => {
         alert('Hubo un error al actualizar la marca con PATCH');
     });
 };
+
+//-----------------CONCESIONARIOS
+// Función para manejar la verificación del ID del Concesionario
+const checkConcesionarioIdPatch = (event) => {
+    event.preventDefault();
+
+    const idConcesionario = document.getElementById('idConcesionarioPatch').value;
+
+    fetch(url + '/concesionarios/' + idConcesionario)
+    .then(response => {
+        if(!response.ok){
+            document.getElementById('camposActualizacionPatch').style.display = 'none';
+            throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(datosObjeto => {
+        document.getElementById('nuevoNombrePatch').value = datosObjeto.nombre;
+        document.getElementById('marcaIDPatch').value = datosObjeto.marcaID;
+        document.getElementById('camposActualizacionPatch').style.display = 'block';
+        document.getElementById('checkIdPatch').style.display = 'none'
+    })
+    .catch(error => {
+        console.error(error);
+        alert('No existe ningún concesionario con ese ID');
+    });
+};
+
+// Función para manejar la solicitud de actualización del Concesionario con PATCH
+const updateConcesionarioPatch = (event) => {
+    event.preventDefault();
+
+    const idConcesionario = document.getElementById('idConcesionarioPatch').value;
+    const nuevoNombre = document.getElementById('nuevoNombrePatch').value;
+    const marcaID = document.getElementById('marcaIDPatch').value;
+
+    const datosBody = {
+        nuevoNombre: nuevoNombre,
+        marcaID: marcaID
+    };
+
+    fetch(url + '/concesionarios/' + idConcesionario, {
+        method: 'PATCH',
+        body: JSON.stringify(datosBody),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+
+    })
+    .then(response => {
+        if(!response.ok){
+            throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
+        }
+        return response.json()
+    })
+    .then(datosObjeto => {
+        const nuevoConcesionarioHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.marcaID}</li>`;
+
+        document.getElementById('nuevoConcesionarioPatch').innerHTML += nuevoConcesionarioHTML;
+        console.log("Datos objeto recibidos:", datosObjeto);
+    })
+    .catch(error => {
+        console.error(error);
+        alert('Hubo un error al actualizar el concesionario con PATCH');
+    });
+};
+//-----------------CONCESIONARIOS
 //--------------------------------------------!PETICIONES PATCH------------------------------------------------
+

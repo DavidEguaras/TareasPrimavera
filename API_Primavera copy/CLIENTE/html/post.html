@@ -42,7 +42,7 @@
         <div id="divGetMarcas" class="mb-5">
             <h2>Peticion 1: Consultar todos los registros de la tabla</h2>
             <button class="btn btn-primary" onclick="getMarcas()">Obtener Marcas</button>
-            <ul id="todosLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+            <ul id="todasLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
                 <h5>Todas nuestras marcas:</h5>
             </ul>
         </div>
@@ -58,4 +58,43 @@
                 <button class="btn btn-primary mt-3" type="submit">Agregar Marca</button>
             </form>
     
-            <ul id="nuevaMarc
+            <ul id="nuevaMarcaPOST" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Registro Agregado:</h5>
+            </ul>
+        </div>
+
+        <div id="divGetConcesionarios" class="mb-5">
+            <h2>Peticion 1: Consultar todos los registros de la tabla</h2>
+            <button class="btn btn-primary" onclick="getConcesionarios()">Obtener Concesionarios</button>
+            <ul id="todosLosConcesionarios" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Todos nuestros concesionarios:</h5>
+            </ul>
+        </div>
+    
+        
+        <div id="divPostConcesionario" class="mb-5"> 
+            <h2>Peticion 3: Agregar un nuevo registro</h2>
+            <form method="post" id="postConcesionarioForm" name="postConcesionario">
+                <h6>Nombre:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="nombreConcesionario" id="nombreConcesionarioPOST" placeholder="Introducir Nombre...">
+                <h6>Cantidad:</h6>
+                <input type="number" class="form-control mr-2" name="cantidad" id="cantidadPOST" placeholder="Introducir Cantidad...">
+                <button class="btn btn-primary mt-3" type="submit">Agregar Concesionario</button>
+            </form>
+    
+            <ul id="nuevoConcesionarioPOST" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Registro Agregado:</h5>
+            </ul>
+        </div>
+    </main>
+    
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/post.js"></script>
+</body>
+</html>

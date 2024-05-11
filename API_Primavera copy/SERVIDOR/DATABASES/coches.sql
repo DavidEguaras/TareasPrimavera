@@ -1,5 +1,6 @@
-create database if not exists coches;
-use coches;
+CREATE DATABASE IF NOT EXISTS coches;
+USE coches;
+
 CREATE TABLE IF NOT EXISTS marcas (
     id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50),
@@ -10,16 +11,14 @@ CREATE TABLE IF NOT EXISTS marcas (
 CREATE TABLE IF NOT EXISTS concesionarios (
     id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50),
-    marcaID INT,
-    PRIMARY KEY (id),
-    FOREIGN KEY (marcaID) REFERENCES marcas(id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS ventas (
     id INT NOT NULL AUTO_INCREMENT,
     marcaID INT,
-     INT,
-    cantidad vendida INT,
+    concesionariosID INT,
+    cantidad_vendida INT,
     PRIMARY KEY (id),
     FOREIGN KEY (marcaID) REFERENCES marcas(id),
     FOREIGN KEY (concesionariosID) REFERENCES concesionarios(id)
@@ -39,13 +38,11 @@ INSERT INTO concesionarios (nombre) VALUES ("Concesionario B");
 INSERT INTO concesionarios (nombre) VALUES ("Concesionario C");
 INSERT INTO concesionarios (nombre) VALUES ("Concesionario D");
 
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (1, 2);
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (2, 1);
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (3, 3);
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (4, 2);
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (5, 4);
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (6, 1);
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (7, 3);
-INSERT INTO ventas (marcaID, concesionariosID) VALUES (8, 4);
-
- 
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (1, 2, 100);
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (2, 1, 150);
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (3, 3, 80);
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (4, 2, 120);
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (5, 4, 90);
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (6, 1, 110);
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (7, 3, 85);
+INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (8, 4, 95);

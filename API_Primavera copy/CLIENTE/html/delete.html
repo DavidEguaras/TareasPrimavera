@@ -49,7 +49,7 @@
     
     
         <div id="divDeleteMarcaByID" class="mb-5"> 
-            <h2>Peticion 6: Borrar un registro</h2>
+            <h2>MARCAS: Borrar una marca</h2>
             <form method="post" id="DeleteMarcaByID" name="DeleteMarcaByID">
                 <h6>ID de la marca a borrar del registro:</h6>
                 <input type="text" class="form-control mr-2 mb-3" name="idMarca" id="idMarcaDELETE" placeholder="Introducir ID..." required>
@@ -57,6 +57,18 @@
             </form>
             <ul id="marcaEliminada" class="list-group mt-3 text-white bg-dark py-4 pl-4">
                 <h5>Marca Eliminada:</h5>
+            </ul>
+        </div>
+
+        <div id="divDeleteConcesionarioByID" class="mb-5"> 
+            <h2>Concesionarios: Eliminar un Concesionario por ID</h2>
+            <form method="post" id="DeleteConcesionarioByID" name="DeleteConcesionarioByID">
+                <h6>ID del concesionario a eliminar:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="idConcesionario" id="idConcesionarioDELETE" placeholder="Introducir ID..." required>
+                <button class="btn btn-primary mt-3" type="submit">Eliminar Concesionario</button>
+            </form>
+            <ul id="concesionarioEliminado" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Concesionario Eliminado:</h5>
             </ul>
         </div>
         

@@ -4,7 +4,7 @@ const url=`http://${dirIP_api}:${PUERTO_EXPRESS}`;
 
 
 
-//--------------------------------------------PETICIONES GET------------------------------------------------
+//--------------------------------------------MARCAS------------------------------------------------
 // Función para obtener todas las marcas
 function getMarcas() {
     fetch(url+'/marcas')
@@ -20,4 +20,28 @@ function getMarcas() {
         })
         .catch(error => console.log(error));
 }
-//--------------------------------------------!PETICIONES GET------------------------------------------------
+//--------------------------------------------!MARCAS------------------------------------------------
+
+
+
+
+
+
+//--------------------------------------------CONCESIONARIOS------------------------------------------------
+// Evento para obtener todos los concesionarios
+function getConcesionarios() {
+    fetch(url + '/concesionarios')
+        .then(datosCrudos => {
+            if (!datosCrudos.ok) {
+                throw `Cuidado: ${datosCrudos.status}: ${datosCrudos.statusText}`;
+            }
+            return datosCrudos.json();
+        })
+        .then(datosObjeto => {
+            const listaConcesionarios = datosObjeto.map(concesionario => `<li>ID: ${concesionario.id} - ${concesionario.nombre} - ${concesionario.direccion}</li>`).join('');
+            document.getElementById('todosLosConcesionarios').innerHTML = listaConcesionarios;
+        })
+        .catch(error => console.log(error));
+}
+
+//--------------------------------------------!CONCESIONARIOS------------------------------------------------

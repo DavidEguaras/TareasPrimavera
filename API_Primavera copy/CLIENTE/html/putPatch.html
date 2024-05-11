@@ -40,6 +40,7 @@
     </header>
 
     <main class="container mt-5">
+        <h1>MARCAS</h1>
         <div id="divGetMarcas" class="mb-5">
             <h2>Peticion 1: Consultar todos los registros de la tabla</h2>
             <button class="btn btn-primary" onclick="getMarcas()">Obtener Marcas</button>
@@ -93,6 +94,54 @@
     
             <ul id="nuevaMarcaPatch" class="list-group mt-3 text-white bg-dark py-4 pl-4"> 
                 <h5>Registro Actualizado:</h5>  
+            </ul>
+        </div>
+
+
+        <h1>Concesionarios</h1>
+        <div id="divPutConcesionario" class="mb-5">
+            <h2>Actualizar un Concesionario con PUT</h2>
+            <form method="post" id="putConcesionarioForm" name="putConcesionario">
+                <h6>ID del concesionario a actualizar:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="idConcesionario" id="idConcesionarioPUT" placeholder="Introducir ID..." required>
+                <button class="btn btn-primary mt-3" onclick="checkConcesionarioIdPut(event)">Comprobar ID del Concesionario</button>
+                
+                <div id="camposActualizacionPUT" style="display: none;">
+                    <h6>Nombre del Concesionario:</h6>
+                    <input type="text" class="form-control mr-2 mb-3" name="nuevoNombre" id="nuevoNombrePUT" placeholder="Introducir Nombre..." required>
+                    <h6>ID de la Marca:</h6>
+                    <input type="text" class="form-control mr-2" name="marcaID" id="marcaIDPUT" placeholder="Introducir ID de la Marca..." required>
+                    <button class="btn btn-primary mt-3" type="submit" onclick="updateConcesionarioPut(event)">Actualizar Concesionario</button>
+                </div>
+                
+            </form>
+        
+            <ul id="nuevoConcesionarioPUT" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Concesionario Actualizado:</h5>
+            </ul>
+        </div>
+        
+        
+        <div id="divPatchConcesionario" class="mb-5"> 
+            <h2>Cambiar parcialmente un Concesionario con PATCH</h2>
+
+            <form method="post" id="patchConcesionarioForm" name="patchConcesionario">
+                <h6>ID del concesionario a cambiar parcialmente:</h6>
+                <input type="text" class="form-control mr-2 mb-3" name="idConcesionario" id="idConcesionarioPatch" placeholder="Introducir ID..." required>
+                <button class="btn btn-primary mt-3" onclick="checkConcesionarioIdPatch(event)">Comprobar ID del Concesionario</button>
+
+                <div id="camposActualizacionPatch" style="display: none;">
+                    <h6>Nombre del Concesionario:</h6>
+                    <input type="text" class="form-control mr-2 mb-3" name="nuevoNombre" id="nuevoNombrePatch" placeholder="Introducir Nombre...">
+                    <h6>ID de la Marca:</h6>
+                    <input type="text" class="form-control mr-2" name="marcaID" id="marcaIDPatch" placeholder="Introducir ID de la Marca...">
+                    <button class="btn btn-primary mt-3" type="submit" onclick="updateConcesionarioPatch(event)">Actualizar Concesionario</button>
+                </div>
+                
+            </form>
+    
+            <ul id="nuevoConcesionarioPatch" class="list-group mt-3 text-white bg-dark py-4 pl-4"> 
+                <h5>Concesionario Actualizado:</h5>  
             </ul>
         </div>
     </main>
