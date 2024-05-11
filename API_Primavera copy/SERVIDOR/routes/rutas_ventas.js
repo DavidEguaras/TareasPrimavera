@@ -6,7 +6,7 @@ const ventasController = require('../controllers/ventas_controller.js');
 rutasVentas.get('/', ventasController);
 
 // Ruta para agregar una marca
-rutasVentas.post('/', ventasController.crearVentas);
+rutasVentas.post('/', ventasController.crearVenta);
 
 // Ruta para obtener una marca por id
 rutasVentas.get('/:id', ventasController.getVentaById);
