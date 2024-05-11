@@ -23,7 +23,7 @@ document.getElementById('postCocheForm').addEventListener('submit', (event) => {
     })
     .then(datosObjeto => {
         // Procesa los datos de la respuesta aquí
-        document.getElementById('nuevoCochePOST').innerHTML = `<li>${datosObjeto.nombreCoche} - ${datosObjeto.cantidad}</li>`;
+        document.getElementById('nuevoCochePOST').innerHTML = `<li>ID:${datosObjeto.id} - ${datosObjeto.nombreCoche} - ${datosObjeto.cantidad}</li>`;
         console.log(datosObjeto);
     })
     .catch(error => console.error(error));

@@ -53,6 +53,7 @@ document.getElementById('submitPutCoche').addEventListener('click', (event) => {
         }
         return response.json();
     })
+    
     .then(datosObjeto => {
         const nuevoCocheHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.cantidad}</li>`;
         document.getElementById('nuevoCochePUT').innerHTML += nuevoCocheHTML;
@@ -76,7 +77,7 @@ document.getElementById('checkIdPatch').addEventListener('click', (event) => {
     const idCoche = document.getElementById('idCochePatch').value;
 
     //verificar si el ID del coche existe
-    fetch(url + '/coches' + idCoche)
+    fetch(url + '/coches/' + idCoche)
     .then(response => {
         if(!response.ok){
             document.getElementById('camposActualizacionPatch').style.display = 'none';
@@ -110,7 +111,7 @@ document.getElementById('submitPatchCoche').addEventListener('submit', (event) =
         cantidad : cantidad
     }
 
-    fetch(url + '/coches' + idCoche, {
+    fetch(url + '/coches/' + idCoche, {
         method: 'PATCH',
         body: JSON.stringify(datosBody),
         headers: {

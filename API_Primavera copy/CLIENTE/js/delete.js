@@ -15,7 +15,10 @@ document.getElementById('DeleteCocheByID').addEventListener('submit', (event) =>
     })
     .then(datosObjeto => {
         console.log("Coche eliminado con éxito:", datosObjeto);
+        document.getElementById('cocheEliminado').innerHTML += `<li>Coche con id: ${datosObjeto.id} - ELIMINADO</li>`;
     })
     .catch(error => console.error(error));
 });
+
+
 //--------------------------------------------!PETICIONES DELETE------------------------------------------------
