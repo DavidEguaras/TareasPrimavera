@@ -53,6 +53,7 @@ document.getElementById('submitPutCoche').addEventListener('click', (event) => {
         }
         return response.json();
     })
+    
     .then(datosObjeto => {
         const nuevoCocheHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.cantidad}</li>`;
         document.getElementById('nuevoCochePUT').innerHTML += nuevoCocheHTML;
