@@ -1,5 +1,5 @@
 create database if not exists coches;
-use ejemplo00;
+use coches;
 CREATE TABLE IF NOT EXISTS marcas (
     id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50),
