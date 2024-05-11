@@ -1,14 +1,14 @@
 //--------------------------------------------PETICIONES POST------------------------------------------------
-//Evento para agregar un coche al registro
-document.getElementById('postCocheForm').addEventListener('submit', (event) => {
+// Evento para agregar una marca al registro
+document.getElementById('postMarcaForm').addEventListener('submit', (event) => {
     event.preventDefault();
 
     const datosBody = {
-        nombreCoche: document.getElementById('nombreCochePOST').value,
+        nombreMarca: document.getElementById('nombreMarcaPOST').value,
         cantidad: document.getElementById('cantidadPOST').value
     };
 
-    fetch(url + '/coches', {
+    fetch(url + '/marcas', {
         method: 'POST',
         body: JSON.stringify(datosBody),
         headers: {
@@ -23,10 +23,9 @@ document.getElementById('postCocheForm').addEventListener('submit', (event) => {
     })
     .then(datosObjeto => {
         // Procesa los datos de la respuesta aquí
-        document.getElementById('nuevoCochePOST').innerHTML = `<li>ID:${datosObjeto.id} - ${datosObjeto.nombreCoche} - ${datosObjeto.cantidad}</li>`;
+        document.getElementById('nuevaMarcaPOST').innerHTML = `<li>ID:${datosObjeto.id} - ${datosObjeto.nombreMarca} - ${datosObjeto.cantidad}</li>`;
         console.log(datosObjeto);
     })
     .catch(error => console.error(error));
 });
 //--------------------------------------------!PETICIONES POST------------------------------------------------
-

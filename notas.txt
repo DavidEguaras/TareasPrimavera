@@ -4,15 +4,18 @@
 -Borrar datos en mostrar todo✅
 -Cambiar los nombres de los botones✅
 -Indexar las peticiones✅
+-Arreglar PATCH ✅
+-ID en el resto de peticiones✅
 
 ++PENDIENTE
 -Notacion de puntos y comas ❌
 -Notificacion de error ❌
--Arreglar PATCH
--ID en el resto de peticiones
-
 
 -Agregar dos tablas: 
-    (cambiar coches por marca) 
+    (cambiar coches por marca)
     +concesionario (id, nombre, idMarca)
     +movimientos (id, idMarca, idConcesionario, cantidad)
+
+
+
+Vj5/sv7q9cBF

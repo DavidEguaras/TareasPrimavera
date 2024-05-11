@@ -1,9 +1,8 @@
 const db = require('../DATABASES/db.js');
 
-const getCoches = (req, res) => {
-    // Consulta a la base de datos
+const getMarcas = (req, res) => {
     db.getConnection((err, connection) =>{
-        connection.query('SELECT * FROM coches', (err, resultados) => {
+        connection.query('SELECT * FROM marcas', (err, resultados) => {
             if (err) {
                 console.error('Error al obtener datos', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
@@ -15,7 +14,7 @@ const getCoches = (req, res) => {
     })
 };
 
-const getCocheById = (req, res) => {
+const getMarcaById = (req, res) => {
     const idRegistro = req.params.id;
     db.getConnection((err, connection) => {
         if (err) {
@@ -23,14 +22,14 @@ const getCocheById = (req, res) => {
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('SELECT * FROM coches WHERE id = ?', [idRegistro], (err, resultados) => {
+        connection.query('SELECT * FROM marcas WHERE id = ?', [idRegistro], (err, resultados) => {
             connection.release();
             if (err) {
                 console.error('Error al obtener el registro:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
                 if (resultados.length > 0) {
-                    res.json(resultados[0]); // Devuelve el primer resultado (que debería ser único)
+                    res.json(resultados[0]);
                 } else {
                     res.status(404).json({ error: 'Registro no encontrado' });
                 }
@@ -39,27 +38,27 @@ const getCocheById = (req, res) => {
     });
 };
 
-const crearCoche = (req, res) => {
-    const { nombreCoche, cantidad } = req.body;
+const crearMarca = (req, res) => {
+    const { nombreMarca, cantidad } = req.body;
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('INSERT INTO coches (nombre, cantidad) VALUES (?, ?)', [nombreCoche, cantidad], (err, resultado) => {
+        connection.query('INSERT INTO marcas (nombre, cantidad) VALUES (?, ?)', [nombreMarca, cantidad], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al guardar datos en la base de datos:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
-                res.json({ recibido: true, nombreCoche, cantidad, id: resultado.insertId });
+                res.json({ recibido: true, nombreMarca, cantidad, id: resultado.insertId });
             }
         });
     });
 };
 
-const patchCoche = (req, res) => {
+const patchMarca = (req, res) => {
     const { nuevoNombre, cantidad } = req.body;
     db.getConnection((err, connection) => {
         if (err) {
@@ -67,7 +66,7 @@ const patchCoche = (req, res) => {
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('UPDATE coches SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
+        connection.query('UPDATE marcas SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al actualizar datos en la base de datos:', err);
@@ -79,7 +78,7 @@ const patchCoche = (req, res) => {
     });
 };
 
-const putCoche = (req, res) => {
+const putMarca = (req, res) => {
     const { nuevoNombre, cantidad } = req.body;
     db.getConnection((err, connection) => {
         if (err) {
@@ -87,7 +86,7 @@ const putCoche = (req, res) => {
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('UPDATE coches SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
+        connection.query('UPDATE marcas SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al actualizar datos en la base de datos:', err);
@@ -99,24 +98,24 @@ const putCoche = (req, res) => {
     });
 };
 
-const deleteCocheById = (req, res) => {
-    const idCoche = req.params.id;
+const deleteMarcaById = (req, res) => {
+    const idMarca = req.params.id;
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('DELETE FROM coches WHERE id = ?', [idCoche], (err, resultado) => {
+        connection.query('DELETE FROM marcas WHERE id = ?', [idMarca], (err, resultado) => {
             connection.release();
             if (err) {
-                console.error('Error al eliminar el coche:', err);
+                console.error('Error al eliminar la marca:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
                 if (resultado.affectedRows > 0) {
-                    res.json({ eliminado: true, id: idCoche });
+                    res.json({ eliminado: true, id: idMarca });
                 } else {
-                    res.status(404).json({ error: 'No se encontró ningún coche con el ID proporcionado' });
+                    res.status(404).json({ error: 'No se encontró ninguna marca con el ID proporcionado' });
                 }
             }
         });
@@ -125,10 +124,10 @@ const deleteCocheById = (req, res) => {
 
 
 module.exports = {
-    getCoches,
-    crearCoche,
-    getCocheById,
-    patchCoche,
-    putCoche,
-    deleteCocheById
+    getMarcas,
+    crearMarca,
+    getMarcaById,
+    patchMarca,
+    putMarca,
+    deleteMarcaById
 };

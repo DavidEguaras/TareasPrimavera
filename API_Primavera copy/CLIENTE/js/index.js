@@ -5,9 +5,9 @@ const url=`http://${dirIP_api}:${PUERTO_EXPRESS}`;
 
 
 //--------------------------------------------PETICIONES GET------------------------------------------------
-//Funcion para obtener todos los coches
-function getCoches() {
-    fetch(url+'/coches')
+// Función para obtener todas las marcas
+function getMarcas() {
+    fetch(url+'/marcas')
         .then(datosCrudos => {
             if (!datosCrudos.ok) {
                 throw `Cuidado: ${datosCrudos.status}: ${datosCrudos.statusText}`;
@@ -15,8 +15,8 @@ function getCoches() {
             return datosCrudos.json();
         })
         .then(datosObjeto => {
-            const listaCoches = datosObjeto.map(coche => `<li>ID: ${coche.id} - ${coche.nombre} - ${coche.cantidad}</li>`).join('');
-            document.getElementById('todosLosCoches').innerHTML = listaCoches;
+            const listaMarcas = datosObjeto.map(marca => `<li>ID: ${marca.id} - ${marca.nombre} - ${marca.cantidad}</li>`).join('');
+            document.getElementById('todosLasMarcas').innerHTML = listaMarcas;
         })
         .catch(error => console.log(error));
 }

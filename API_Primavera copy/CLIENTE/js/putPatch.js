@@ -1,12 +1,11 @@
 //--------------------------------------------PETICIONES PUT------------------------------------------------
-// Listener para comprobar la existencia del ID del coche
-document.getElementById('checkIdPut').addEventListener('click', (event) => {
+// Función para manejar la verificación del ID del marca
+const checkMarcaIdPut = (event) => {
     event.preventDefault();
 
-    const idCoche = document.getElementById('idCochePUT').value;
+    const idMarca = document.getElementById('idMarcaPUT').value;
 
-    // Verificar si el ID del coche existe
-    fetch(url + '/coches/' + idCoche)
+    fetch(url + '/marcas/' + idMarca)
     .then(response => {
         if (!response.ok) {
             document.getElementById('camposActualizacionPUT').style.display = 'none';
@@ -15,7 +14,6 @@ document.getElementById('checkIdPut').addEventListener('click', (event) => {
         return response.json();
     })
     .then(datosObjeto => {
-        // Si el ID del coche existe, mostrar los campos adicionales para la actualización
         document.getElementById('nuevoNombrePUT').value = datosObjeto.nombre;
         document.getElementById('cantidadPUT').value = datosObjeto.cantidad;
         document.getElementById('camposActualizacionPUT').style.display = 'block';
@@ -23,24 +21,24 @@ document.getElementById('checkIdPut').addEventListener('click', (event) => {
     })
     .catch(error => {
         console.error(error);
-        alert('No existe ningun coche con ese ID');
+        alert('No existe ninguna marca con ese ID');
     });
-});
-// Listener para enviar el formulario de actualización del coche
-document.getElementById('submitPutCoche').addEventListener('click', (event) => {
+};
+
+// Función para manejar la solicitud de actualización del marca con PUT
+const updateMarcaPut = (event) => {
     event.preventDefault();
 
-    const idCoche = document.getElementById('idCochePUT').value;
+    const idMarca = document.getElementById('idMarcaPUT').value;
     const nuevoNombre = document.getElementById('nuevoNombrePUT').value;
     const cantidad = document.getElementById('cantidadPUT').value;
 
-    // Realizar la solicitud PUT
     const datosBody = {
         nuevoNombre: nuevoNombre,
         cantidad: cantidad
     };
 
-    fetch(url + '/coches/' + idCoche, {
+    fetch(url + '/marcas/' + idMarca, {
         method: 'PUT',
         body: JSON.stringify(datosBody),
         headers: {
@@ -53,31 +51,29 @@ document.getElementById('submitPutCoche').addEventListener('click', (event) => {
         }
         return response.json();
     })
-    
     .then(datosObjeto => {
-        const nuevoCocheHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.cantidad}</li>`;
-        document.getElementById('nuevoCochePUT').innerHTML += nuevoCocheHTML;
+        const nuevaMarcaHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.cantidad}</li>`;
+        document.getElementById('nuevaMarcaPUT').innerHTML += nuevaMarcaHTML;
 
         console.log("Datos objeto recibidos:", datosObjeto);
     })
     .catch(error => {
         console.error(error);
-        alert('Hubo un error al actualizar el coche con PUT');
+        alert('Hubo un error al actualizar la marca con PUT');
     });
-});
+};
 //--------------------------------------------!PETICIONES PUT------------------------------------------------
 
 
 //--------------------------------------------PETICIONES PATCH------------------------------------------------
 
-// Listener para comprobar la existencia del ID del coche
-document.getElementById('checkIdPatch').addEventListener('click', (event) => {
+// Función para manejar la verificación del ID del marca
+const checkMarcaIdPatch = (event) => {
     event.preventDefault();
 
-    const idCoche = document.getElementById('idCochePatch').value;
+    const idMarca = document.getElementById('idMarcaPatch').value;
 
-    //verificar si el ID del coche existe
-    fetch(url + '/coches/' + idCoche)
+    fetch(url + '/marcas/' + idMarca)
     .then(response => {
         if(!response.ok){
             document.getElementById('camposActualizacionPatch').style.display = 'none';
@@ -93,16 +89,15 @@ document.getElementById('checkIdPatch').addEventListener('click', (event) => {
     })
     .catch(error => {
         console.error(error);
-        alert('No existe ningun coche con ese ID');
-    })
+        alert('No existe ninguna marca con ese ID');
+    });
+};
 
-});
-
-
-document.getElementById('submitPatchCoche').addEventListener('submit', (event) => {
+// Función para manejar la solicitud de actualización del marca con PATCH
+const updateMarcaPatch = (event) => {
     event.preventDefault();
 
-    const idCoche = document.getElementById('idCochePatch').value;
+    const idMarca = document.getElementById('idMarcaPatch').value;
     const nuevoNombre = document.getElementById('nuevoNombrePatch').value;
     const cantidad = document.getElementById('cantidadPatch').value;
 
@@ -111,7 +106,7 @@ document.getElementById('submitPatchCoche').addEventListener('submit', (event) =
         cantidad : cantidad
     }
 
-    fetch(url + '/coches/' + idCoche, {
+    fetch(url + '/marcas/' + idMarca, {
         method: 'PATCH',
         body: JSON.stringify(datosBody),
         headers: {
@@ -126,16 +121,14 @@ document.getElementById('submitPatchCoche').addEventListener('submit', (event) =
         return response.json()
     })
     .then(datosObjeto => {
-        const nuevoCocheHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.cantidad}</li>`;
+        const nuevaMarcaHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.cantidad}</li>`;
 
-        document.getElementById('nuevoCochePATCH').innerHTML += nuevoCocheHTML;
+        document.getElementById('nuevaMarcaPatch').innerHTML += nuevaMarcaHTML;
         console.log("Datos objeto recibidos:", datosObjeto);
     })
     .catch(error => {
         console.error(error);
-        alert('Hubo un error al actualizar el coche con PATCH');
+        alert('Hubo un error al actualizar la marca con PATCH');
     });
-})
+};
 //--------------------------------------------!PETICIONES PATCH------------------------------------------------
-
-

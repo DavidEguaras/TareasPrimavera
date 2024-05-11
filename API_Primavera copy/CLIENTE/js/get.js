@@ -1,10 +1,10 @@
-//Evento para obtener un coche o coches por su id
-document.getElementById('getCocheByIDForm').addEventListener('submit', (event) =>{
+// Evento para obtener una marca por su ID
+document.getElementById('getMarcaByIDForm').addEventListener('submit', (event) =>{
     event.preventDefault();
 
-    const idCoche = document.getElementById('idCocheGET').value;
+    const idMarca = document.getElementById('idMarcaGET').value;
 
-    fetch(url+'/coches/'+ idCoche)
+    fetch(url+'/marcas/'+ idMarca)
         .then(datosCrudos=>{
             if(!datosCrudos.ok){
                 throw `Cuidado: ${datosCrudos.status}: ${datosCrudos.statusText}`;
@@ -13,8 +13,8 @@ document.getElementById('getCocheByIDForm').addEventListener('submit', (event) =
             return datosCrudos.json();
         })
         .then(datosObjeto=>{
-            document.getElementById('cocheID').innerHTML += datosObjeto.nombre+" - "+datosObjeto.cantidad;
+            document.getElementById('marcaID').innerHTML += datosObjeto.nombre+" - "+datosObjeto.cantidad;
             console.log(datosObjeto);
         })
         .catch(error=>console.log(error));
-})
+});
