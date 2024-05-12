@@ -14,8 +14,16 @@
     </header>
 
     <main class="container mt-5">
-
-        <div id="getConcesionarios">
+        <div id="getMarcas" class="container mt-5">
+            <h2>Ver Marcas</h2>
+            <button class="btn btn-primary" onclick="getMarcas()">Obtener Concesionarios</button>
+            <ul id="todasLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Todos nuestras Marcas:</h5>
+            </ul>
+        </div>
+        
+        
+        <div id="getConcesionarios" class="container mt-5">
             <h2>Ver Concesionarios</h2>
             <button class="btn btn-primary" onclick="getConcesionarios()">Obtener Concesionarios</button>
             <ul id="todosLosConcesionarios" class="list-group mt-3 text-white bg-dark py-4 pl-4">
@@ -23,30 +31,27 @@
             </ul>
         </div>
 
-        <div id="getMarcas">
-            <h2>Ver Marcas</h2>
-            <button class="btn btn-primary" onclick="getMarcas()">Obtener Concesionarios</button>
-            <ul id="todasLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-                <h5>Todos nuestras Marcas:</h5>
-            </ul>
-        </div>
-
-        <div id="Ventas"  class=" mt-5">
-            <h1 >Ventas</h1>
+        
+        <div id="Ventas" class="container mt-5">
+            <h1>Ventas</h1>
             <form id="ventaForm">
-                <label for="marcaSelect">Selecciona una Marca:</label>
-                <select id="marcaSelect" name="marca">
+                <label for="marcaSelect">Selecciona una Marca (haz click):</label>
+                <select id="marcaSelect" name="marca" class="form-control">
                     <!-- Opciones de marca se cargarán dinámicamente con JavaScript -->
                 </select><br><br>
                 <label for="concesionarioSelect">Selecciona un Concesionario:</label>
-                <select id="concesionarioSelect" name="concesionario">
+                <select id="concesionarioSelect" name="concesionario" class="form-control">
                     <!-- Opciones de concesionario se cargarán dinámicamente con JavaScript -->
                 </select><br><br>
                 <label for="cantidadInput">Cantidad Vendida:</label>
-                <input type="number" id="cantidadInput" name="cantidad"><br><br>
-                <button type="submit">Registrar Venta</button>
+                <input type="number" id="cantidadInput" name="cantidad" class="form-control"><br><br>
+                <button type="submit" class="btn btn-primary">Registrar Venta</button>
             </form>
+            <ul id="nuevaVentaPOST" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Venta Registrada:</h5>
+            </ul>
         </div>
+        
         
     </main>
     
