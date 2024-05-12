@@ -74,16 +74,16 @@ const checkConcesionarioIdPut = (event) => {
     fetch(url + '/concesionarios/' + idConcesionario)
     .then(response => {
         if (!response.ok) {
-            document.getElementById('camposActualizacionPUT').style.display = 'none';
+            document.getElementById('camposActualizacionPUTConcesionarios').style.display = 'none';
             throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
         }
         return response.json();
     })
     .then(datosObjeto => {
-        document.getElementById('nuevoNombrePUT').value = datosObjeto.nombre;
-        document.getElementById('marcaIDPUT').value = datosObjeto.marcaID;
-        document.getElementById('camposActualizacionPUT').style.display = 'block';
-        document.getElementById('checkIdPut').style.display = 'none';
+        document.getElementById('nuevoNombrePUTConcesionarios').value = datosObjeto.nombre;
+        document.getElementById('marcaIDPUTConcesionarios').value = datosObjeto.marcaID;
+        document.getElementById('camposActualizacionPUTConcesionarios').style.display = 'block';
+        document.getElementById('checkIdPutConcesionarios').style.display = 'none';
     })
     .catch(error => {
         console.error(error);
@@ -97,11 +97,10 @@ const updateConcesionarioPut = (event) => {
 
     const idConcesionario = document.getElementById('idConcesionarioPUT').value;
     const nuevoNombre = document.getElementById('nuevoNombrePUT').value;
-    const marcaID = document.getElementById('marcaIDPUT').value;
 
     const datosBody = {
         nuevoNombre: nuevoNombre,
-        marcaID: marcaID
+        idConcesionario: idConcesionario
     };
 
     fetch(url + '/concesionarios/' + idConcesionario, {
@@ -209,14 +208,14 @@ const checkConcesionarioIdPatch = (event) => {
     fetch(url + '/concesionarios/' + idConcesionario)
     .then(response => {
         if(!response.ok){
-            document.getElementById('camposActualizacionPatch').style.display = 'none';
+            document.getElementById('camposActualizacionPatchConcesionario').style.display = 'none';
             throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
         }
         return response.json();
     })
     .then(datosObjeto => {
-        document.getElementById('nuevoNombrePatch').value = datosObjeto.nombre;
-        document.getElementById('marcaIDPatch').value = datosObjeto.marcaID;
+        document.getElementById('nuevoNombrePatchConcesionario').value = datosObjeto.nombre;
+        document.getElementById('concesioaIDPatch').value = datosObjeto.marcaID;
         document.getElementById('camposActualizacionPatch').style.display = 'block';
         document.getElementById('checkIdPatch').style.display = 'none'
     })

@@ -16,7 +16,7 @@ function getMarcas() {
         })
         .then(datosObjeto => {
             const listaMarcas = datosObjeto.map(marca => `<li>ID: ${marca.id} - ${marca.nombre} - ${marca.cantidad}</li>`).join('');
-            document.getElementById('todosLasMarcas').innerHTML = listaMarcas;
+            document.getElementById('todasLasMarcas').innerHTML = listaMarcas;
         })
         .catch(error => console.log(error));
 }
