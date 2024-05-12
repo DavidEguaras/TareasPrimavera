@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/coches', rutasMarcas);
+app.use('/marcas', rutasMarcas);
 app.use('/concesionarios', rutasConcesionarios);
 app.use('/ventas', rutasVentas);
 
