@@ -38,7 +38,7 @@ function getConcesionarios() {
             return datosCrudos.json();
         })
         .then(datosObjeto => {
-            const listaConcesionarios = datosObjeto.map(concesionario => `<li>ID: ${concesionario.id} - ${concesionario.nombre} - ${concesionario.direccion}</li>`).join('');
+            const listaConcesionarios = datosObjeto.map(concesionario => `<li>ID: ${concesionario.id} - ${concesionario.nombre}</li>`).join('');
             document.getElementById('todosLosConcesionarios').innerHTML = listaConcesionarios;
         })
         .catch(error => console.log(error));
