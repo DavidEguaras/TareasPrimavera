@@ -63,26 +63,6 @@ const getVentaById = (req, res) => {
     });
 };
 
-const actualizarVenta = (req, res) => {
-    const idVenta = req.params.id;
-    const { marcaID, concesionariosID, cantidad_vendida } = req.body;
-    db.getConnection((err, connection) => {
-        if (err) {
-            console.error('Error al obtener conexión:', err);
-            res.status(500).json({ error: 'Error interno del servidor' });
-            return;
-        }
-        connection.query('UPDATE ventas SET marcaID = ?, concesionariosID = ?, cantidad_vendida = ? WHERE id = ?', [marcaID, concesionariosID, cantidad_vendida, idVenta], (err, resultado) => {
-            connection.release();
-            if (err) {
-                console.error('Error al actualizar la venta:', err);
-                res.status(500).json({ error: 'Error interno del servidor' });
-            } else {
-                res.json({ actualizado: true, marcaID, concesionariosID, cantidad_vendida, id: idVenta });
-            }
-        });
-    });
-};
 
 const eliminarVenta = (req, res) => {
     const idVenta = req.params.id;
@@ -111,7 +91,6 @@ const eliminarVenta = (req, res) => {
 module.exports = {
     getVentas,
     crearVenta,
-    getVentaById,
     actualizarVenta,
     eliminarVenta
 };

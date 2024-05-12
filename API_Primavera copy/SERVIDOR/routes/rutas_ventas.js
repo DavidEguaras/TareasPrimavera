@@ -11,9 +11,6 @@ router.post('/', ventasController.crearVenta);
 // Ruta para obtener una venta por su id
 router.get('/:id', ventasController.getVentaById);
 
-// Ruta para actualizar una venta
-router.put('/:id', ventasController.actualizarVenta);
-
 // Ruta para eliminar una venta
 router.delete('/:id', ventasController.eliminarVenta);
 
