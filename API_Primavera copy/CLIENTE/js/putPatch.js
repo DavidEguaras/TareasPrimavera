@@ -69,20 +69,20 @@ const updateMarcaPut = (event) => {
 const checkConcesionarioIdPut = (event) => {
     event.preventDefault();
 
-    const idConcesionario = document.getElementById('idConcesionarioPUT').value;
+    const idConcesionario = document.getElementById('concesionarioIDPut').value;
 
     fetch(url + '/concesionarios/' + idConcesionario)
     .then(response => {
         if (!response.ok) {
-            document.getElementById('camposActualizacionPUTConcesionarios').style.display = 'none';
+            document.getElementById('camposActualizacionPUT').style.display = 'none';
             throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
         }
         return response.json();
     })
     .then(datosObjeto => {
-        document.getElementById('nuevoNombrePUTConcesionarios').value = datosObjeto.nombre;
-        document.getElementById('marcaIDPUTConcesionarios').value = datosObjeto.marcaID;
-        document.getElementById('camposActualizacionPUTConcesionarios').style.display = 'block';
+        document.getElementById('nuevoNombrePUTConcesioanrio').value = datosObjeto.nombre;
+        document.getElementById('concesionarioIDPut').value = datosObjeto.idConcesionario;
+        document.getElementById('camposActualizacionPUT').style.display = 'block';
         document.getElementById('checkIdPutConcesionarios').style.display = 'none';
     })
     .catch(error => {
@@ -95,8 +95,8 @@ const checkConcesionarioIdPut = (event) => {
 const updateConcesionarioPut = (event) => {
     event.preventDefault();
 
-    const idConcesionario = document.getElementById('idConcesionarioPUT').value;
-    const nuevoNombre = document.getElementById('nuevoNombrePUT').value;
+    const idConcesionario = document.getElementById('concesionarioIDPut').value;
+    const nuevoNombre = document.getElementById('nuevoNombrePUTConcesioanrio').value;
 
     const datosBody = {
         nuevoNombre: nuevoNombre,
@@ -127,6 +127,7 @@ const updateConcesionarioPut = (event) => {
         alert('Hubo un error al actualizar el concesionario con PUT');
     });
 };
+
 //-----------------CONCESIONARIOS
 //--------------------------------------------!PETICIONES PUT------------------------------------------------
 
@@ -207,17 +208,17 @@ const checkConcesionarioIdPatch = (event) => {
 
     fetch(url + '/concesionarios/' + idConcesionario)
     .then(response => {
-        if(!response.ok){
-            document.getElementById('camposActualizacionPatchConcesionario').style.display = 'none';
+        if (!response.ok) {
+            document.getElementById('camposActualizacionPatch').style.display = 'none';
             throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
         }
         return response.json();
     })
     .then(datosObjeto => {
-        document.getElementById('nuevoNombrePatchConcesionario').value = datosObjeto.nombre;
-        document.getElementById('concesioaIDPatch').value = datosObjeto.marcaID;
+        document.getElementById('nuevoNombrePatchConcesionario').value = datosObjeto.nombre; 
+        document.getElementById('concesionarioIDPatch').value = datosObjeto.idConcesionario;
         document.getElementById('camposActualizacionPatch').style.display = 'block';
-        document.getElementById('checkIdPatch').style.display = 'none'
+        document.getElementById('checkConcesionarioIdPatch').style.display = 'none';
     })
     .catch(error => {
         console.error(error);
@@ -230,8 +231,8 @@ const updateConcesionarioPatch = (event) => {
     event.preventDefault();
 
     const idConcesionario = document.getElementById('idConcesionarioPatch').value;
-    const nuevoNombre = document.getElementById('nuevoNombrePatch').value;
-    const marcaID = document.getElementById('marcaIDPatch').value;
+    const nuevoNombre = document.getElementById('nuevoNombrePatchConcesionario').value;
+    const marcaID = document.getElementById('concesionarioIDPatch').value;
 
     const datosBody = {
         nuevoNombre: nuevoNombre,
@@ -247,14 +248,13 @@ const updateConcesionarioPatch = (event) => {
 
     })
     .then(response => {
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error(`Cuidado: ${response.status}: ${response.statusText}`);
         }
-        return response.json()
+        return response.json();
     })
     .then(datosObjeto => {
         const nuevoConcesionarioHTML = `<li>${datosObjeto.nuevoNombre} - ${datosObjeto.marcaID}</li>`;
-
         document.getElementById('nuevoConcesionarioPatch').innerHTML += nuevoConcesionarioHTML;
         console.log("Datos objeto recibidos:", datosObjeto);
     })
@@ -263,6 +263,7 @@ const updateConcesionarioPatch = (event) => {
         alert('Hubo un error al actualizar el concesionario con PATCH');
     });
 };
+
 //-----------------CONCESIONARIOS
 //--------------------------------------------!PETICIONES PATCH------------------------------------------------
 
