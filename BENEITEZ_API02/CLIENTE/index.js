@@ -94,15 +94,24 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => {
             if (response.ok) {
-                
-                alert("Venta registrada con éxito!");
-                document.getElementById("ventaForm").reset();
+                return response.json(); // Parsear la respuesta como JSON
             } else {
                 throw new Error("Error al registrar la venta");
             }
         })
-        .catch(error => alert("Error al registrar la venta. Por favor, inténtalo de nuevo."));
+        .then(datosObjeto => {
+            document.getElementById('nuevaVentaPOST').innerHTML = `<li>VENTA CON ID: ${datosObjeto.id}: ${document.getElementById('cantidadInput').innerText} unidades vendidas de la MARCA: ${document.getElementById('marcaSelect').value}`;
+            // Mostrar mensaje de éxito
+            alert("Venta registrada con éxito!");
+            // Limpiar el formulario después de agregar la venta
+            document.getElementById("ventaForm").reset();
+        })
+        .catch(error => {
+            console.error("Error al registrar la venta:", error); // Mostrar el error en la consola
+            alert("Error al registrar la venta. Por favor, inténtalo de nuevo.");
+        });
     });
+    
 });
 
 //----------------------------------------!VENTAS----------------------------------------
