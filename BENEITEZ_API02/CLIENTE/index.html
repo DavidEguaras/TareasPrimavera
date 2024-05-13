@@ -3,62 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
 </head>
 <body>
-    <header class="bg-dark text-white py-4">
-        <div class="container">
-            <h1 class="text-center">API de Ventas de David</h1>
-        </div>
-    </header>
-
-    <main class="container mt-5">
-        <div id="getMarcas" class="container mt-5">
-            <h2>Ver Marcas</h2>
-            <button class="btn btn-primary" onclick="getMarcas()">Obtener Concesionarios</button>
-            <ul id="todasLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-                <h5>Todos nuestras Marcas:</h5>
-            </ul>
-        </div>
-        
-        
-        <div id="getConcesionarios" class="container mt-5">
-            <h2>Ver Concesionarios</h2>
-            <button class="btn btn-primary" onclick="getConcesionarios()">Obtener Concesionarios</button>
-            <ul id="todosLosConcesionarios" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-                <h5>Todos nuestros concesionarios:</h5>
-            </ul>
-        </div>
-
-        
-        <div id="Ventas" class="container mt-5">
-            <h1>Ventas</h1>
-            <form id="ventaForm">
-                <label for="marcaSelect">Selecciona una Marca (haz click):</label>
-                <select id="marcaSelect" name="marca" class="form-control">
-                    <!-- Opciones de marca se cargarán dinámicamente con JavaScript -->
-                </select><br><br>
-                <label for="concesionarioSelect">Selecciona un Concesionario:</label>
-                <select id="concesionarioSelect" name="concesionario" class="form-control">
-                    <!-- Opciones de concesionario se cargarán dinámicamente con JavaScript -->
-                </select><br><br>
-                <label for="cantidadInput">Cantidad Vendida:</label>
-                <input type="number" id="cantidadInput" name="cantidad" class="form-control"><br><br>
-                <button type="submit" class="btn btn-primary">Registrar Venta</button>
-            </form>
-            <ul id="nuevaVentaPOST" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-                <h5>Venta Registrada:</h5>
-            </ul>
-        </div>
-        
-        
-    </main>
     
-    <footer></footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="index.js"></script>
 </body>
 </html>

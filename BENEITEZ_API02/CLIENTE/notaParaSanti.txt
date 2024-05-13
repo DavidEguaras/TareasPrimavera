@@ -1,3 +1,0 @@
-No he podido hacer bien los metodos CRUD para concesionarios y marcas porque eran demasiados IDs y me estaba liando
-y equivocando todo el rato, hasta el punto que ya no sabia ni que me fallaba.
-borre todo lo que tenia y lo repeti solo con ventas
