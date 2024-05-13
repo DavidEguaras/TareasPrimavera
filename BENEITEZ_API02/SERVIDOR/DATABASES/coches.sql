@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS concesionarios (
 CREATE TABLE IF NOT EXISTS ventas (
     id INT NOT NULL AUTO_INCREMENT,
     marcaID INT,
-    concesionariosID INT,
+    concesionarioID INT,
     cantidad_vendida INT,
     PRIMARY KEY (id),
     FOREIGN KEY (marcaID) REFERENCES marcas(id),
-    FOREIGN KEY (concesionariosID) REFERENCES concesionarios(id)
+    FOREIGN KEY (concesionarioID) REFERENCES concesionarios(id)
 );
 
 INSERT INTO marcas (nombre, cantidad) VALUES ("Kia", 66245);
@@ -41,5 +41,5 @@ INSERT INTO concesionarios (nombre, marcaID) VALUES ("Concesionario B", 2);
 INSERT INTO concesionarios (nombre, marcaID) VALUES ("Concesionario C", 3);
 INSERT INTO concesionarios (nombre, marcaID) VALUES ("Concesionario D", 4);
 
-INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (1, 2, 10);
-INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (2, 1, 15);
+INSERT INTO ventas (marcaID, concesionarioID, cantidad_vendida) VALUES (1, 2, 10);
+INSERT INTO ventas (marcaID, concesionarioID, cantidad_vendida) VALUES (2, 1, 15);
