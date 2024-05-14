@@ -8,10 +8,8 @@ async function cargarVentas() {
         cuerpoTabla.innerHTML = '';
 
         for (const venta of ventas) {
-            const marcaID = venta.marcaID;
             const nombreMarca = await getNombreMarcaByID(venta.marcaID);
-            const concesionariosID = venta.concesionariosID;
-            const nombreConcesionario = await getNombreConcesionarioByID(concesionariosID);
+            const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionariosID);
             const fila = `
                 <tr>
                     <td>${venta.id}</td>
