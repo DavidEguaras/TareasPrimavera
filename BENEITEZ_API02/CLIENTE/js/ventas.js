@@ -1,6 +1,41 @@
+
+async function cargarVentas() {
+    try {
+        const response = await fetch(`${url}/ventas`);
+        const ventas = await response.json();
+        
+        const cuerpoTabla = document.getElementById('cuerpoTabla');
+        cuerpoTabla.innerHTML = '';
+
+        for (const venta of ventas) {
+            const marcaID = venta.marcaID;
+            const nombreMarca = await getNombreMarcaByID(venta.marcaID);
+            const concesionariosID = venta.concesionariosID;
+            const nombreConcesionario = await getNombreConcesionarioByID(concesionariosID);
+            const fila = `
+                <tr>
+                    <td>${venta.id}</td>
+                    <td>${nombreMarca}</td>
+                    <td>${nombreConcesionario}</td>
+                    <td>${venta.cantidad_vendida}</td>
+                    <td><button onclick="eliminarVenta(${venta.id})">Eliminar</button></td>
+                </tr>`;
+            cuerpoTabla.innerHTML += fila;
+        }
+    } catch (error) {
+        console.error('Error al cargar las ventas:', error);
+    }
+}
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const marcaSelect = document.getElementById("marcaSelect");
     const concesionarioSelect = document.getElementById("concesionarioSelect");
+    const cantidadInput = document.getElementById("cantidadInput"); // Agregado: obtener el input de cantidad
 
     // Al cargar la página, obtener y mostrar las opciones de marca
     fetch(url + "/marcas")
@@ -21,28 +56,38 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch(url + '/concesionarios/marca/' + marcaID)
             .then(response => response.json())
             .then(data => {
-                concesionarioSelect.innerHTML = ""; // Limpiar opciones anteriores
+                concesionarioSelect.innerHTML = "";
                 data.forEach(concesionario => {
                     concesionarioSelect.innerHTML += `<option value="${concesionario.id}">${concesionario.nombre}</option>`;
                 });
-                // Habilitar el campo de concesionario después de seleccionar la marca
+
                 concesionarioSelect.disabled = false;
 
-                // Seleccionar automáticamente el primer concesionario
+                //Sirve para seleccionar automaticamente el primer concesionario de esa marca
                 if (data.length > 0) {
                     concesionarioSelect.selectedIndex = 0;
                 }
             })
-            .catch(error => console.error("Error al obtener los concesionarios:", error));
+        .catch(error => console.error("Error al obtener los concesionarios:", error));
     });
 
     //AQUI SE MANEJA EL POST DE UNA VENTA
     document.getElementById("ventaForm").addEventListener("submit", function(event) {
         event.preventDefault();
-        const formData = new FormData(this);
+
+        // Crear un objeto con los datos del formulario
+        const ventaData = {
+            marcaID: marcaSelect.value,
+            concesionariosID: concesionarioSelect.value,
+            cantidad_vendida: cantidadInput.value
+        };
+
         fetch(url + "/ventas", {
             method: "POST",
-            body: formData
+            headers: {
+                "Content-Type": "application/json" // Especificar el tipo de contenido como JSON
+            },
+            body: JSON.stringify(ventaData) // Convertir el objeto a formato JSON
         })
         .then(response => {
             if (response.ok) {
@@ -51,15 +96,39 @@ document.addEventListener("DOMContentLoaded", function() {
                 throw new Error("Error al registrar la venta");
             }
         })
-        .then(datosObjeto => {
-            document.getElementById('nuevaVentaPOST').innerHTML = `<li>VENTA CON ID: ${datosObjeto.id}: ${document.getElementById('cantidadInput').innerText} unidades vendidas de la MARCA: ${document.getElementById('marcaSelect').value}`;
+        .then(async datosObjeto => {
+            const nombreMarca = await getNombreMarcaByID(marcaSelect.value);
+            document.getElementById('nuevaVentaPOST').innerHTML = `
+                <li>VENTA con ID: ${datosObjeto.id} <br>
+                ${cantidadInput.value} unidades vendidas 
+                de la MARCA: ${nombreMarca}
+            `;
             alert("Venta registrada con éxito!");
             document.getElementById("ventaForm").reset();
         })
         .catch(error => {
-            console.error("Error al registrar la venta:", error); 
+            console.error("Error al registrar la venta:", error);
             alert("Error al registrar la venta. Por favor, inténtalo de nuevo.");
         });
     });
-    
 });
+
+
+async function eliminarVenta(idVenta) {
+    try {
+        const response = await fetch(`${url}/ventas/${idVenta}`, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            // Si la eliminación fue exitosa, recargar las ventas para actualizar la tabla
+            cargarVentas();
+        } else {
+            console.error('Error al eliminar la venta:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error al eliminar la venta:', error);
+    }
+}
+
+// Cargar las ventas al cargar la página
+document.addEventListener('DOMContentLoaded', cargarVentas);

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <a href="index.html">
+                <h1 class="text-center">API de Coches de David</h1>
+            </a>
+            <h2 class="text-center">Marcas</h2>
+        </div>
+
+        <div class="dropdown container text-center">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              MENU
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="concesionarios.html">Concesionarios</a>
+                <a class="dropdown-item" href="marcas.html">Marcas</a>
+                <a class="dropdown-item" href="ventas.html">Ventas</a>
+            </div>
+          </div>
+    </header>
+
+
+    <div id="getMarcas" class="container mt-5">
+        <h2>Ver Marcas</h2>
+        <button class="btn btn-primary" onclick="getMarcas()">Obtener Concesionarios</button>
+        <ul id="todasLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+            <h5>Todos nuestras Marcas:</h5>
+        </ul>
+    </div>
+    
+    
+    <div id="getConcesionarios" class="container mt-5">
+        <h2>Ver Concesionarios</h2>
+        <button class="btn btn-primary" onclick="getConcesionarios()">Obtener Concesionarios</button>
+        <ul id="todosLosConcesionarios" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+            <h5>Todos nuestros concesionarios:</h5>
+        </ul>
+    </div>
+
+    <div id="getVentas" class="container mt-5">
+        <h2>Ver Ventas</h2>
+        <button class="btn btn-primary" onclick="getVentas()">Obtener Ventas</button>
+        <ul id="todasLasVentas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+            <h5>Todos nuestras ventas:</h5>
+        </ul>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

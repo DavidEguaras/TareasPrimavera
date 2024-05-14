@@ -9,34 +9,68 @@
 <body>
     <header class="bg-dark text-white py-4">
         <div class="container">
-            <h1 class="text-center">API de Coches de David</h1>
+            <a href="index.html">
+                <h1 class="text-center">API de Coches de David</h1>
+            </a>
             <h2 class="text-center">Ventas</h2>
         </div>
+
+        <div class="dropdown container text-center">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              MENU
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="concesionarios.html">Concesionarios</a>
+                <a class="dropdown-item" href="marcas.html">Marcas</a>
+                <a class="dropdown-item" href="ventas.html">Ventas</a>
+            </div>
+          </div>
     </header>
 
     <main class="container mt-5">
-        
+        <h1>Ventas</h1>
 
-        
+        <div id="deleteVentas" class="mt-5 container">
+            <h2>Ver y Borrar ventas</h2>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Concesionario</th>
+                        <th>Cantidad Vendida</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                    <!-- Las filas de la tabla se agregarán dinámicamente aquí -->
+                </tbody>
+            </table>
+        </div>
+
         <div id="Ventas" class="container mt-5">
-            <h1>Ventas</h1>
-            <form id="ventaForm">
-                <label for="marcaSelect">Selecciona una Marca (haz click):</label>
-                <select id="marcaSelect" name="marca" class="form-control">
-                    <!-- Opciones de marca se cargarán dinámicamente con JavaScript -->
-                </select><br><br>
-                <label for="concesionarioSelect">Selecciona un Concesionario:</label>
-                <select id="concesionarioSelect" name="concesionario" class="form-control">
-                    <!-- Opciones de concesionario se cargarán dinámicamente con JavaScript -->
-                </select><br><br>
-                <label for="cantidadInput">Cantidad Vendida:</label>
-                <input type="number" id="cantidadInput" name="cantidad" class="form-control"><br><br>
+            <h2> Realizar una venta (POST)</h2>
+            <form id="ventaForm" style="margin-bottom: 10px;">
+                <label for="marcaSelect" style="margin-bottom: 5px;">Selecciona una Marca (haz click):</label>
+                <select id="marcaSelect" name="marca" class="form-control" style="margin-bottom: 10px;"></select>
+                
+                <label for="concesionarioSelect" style="margin-bottom: 5px;">Selecciona un Concesionario:</label>
+                <select id="concesionarioSelect" name="concesionario" class="form-control" style="margin-bottom: 10px;"></select>
+            
+                <label for="cantidadInput" style="margin-bottom: 5px;">Cantidad Vendida:</label>
+                <input type="number" id="cantidadInput" name="cantidad" class="form-control" style="margin-bottom: 10px;">
+                
                 <button type="submit" class="btn btn-primary">Registrar Venta</button>
             </form>
             <ul id="nuevaVentaPOST" class="list-group mt-3 text-white bg-dark py-4 pl-4">
                 <h5>Venta Registrada:</h5>
             </ul>
+            
+
         </div>
+
+        
         
         
     </main>

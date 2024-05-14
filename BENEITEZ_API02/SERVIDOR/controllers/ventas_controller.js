@@ -21,6 +21,7 @@ const getVentas = (req, res) => {
 
 const crearVenta = (req, res) => {
     const { marcaID, concesionariosID, cantidad_vendida } = req.body;
+    console.log('Datos recibidos:', req.body);
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
