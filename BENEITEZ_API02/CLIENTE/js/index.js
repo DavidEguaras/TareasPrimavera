@@ -15,6 +15,7 @@ function getMarcas() {
             return datosCrudos.json();
         })
         .then(datosObjeto => {
+            console.log(datosObjeto); 
             const listaMarcas = datosObjeto.map(marca => `
                 <li style="display: flex; justify-content: space-between; padding: 5px 0;">
                     <span style="flex: 1; font-weight: bold;">ID:</span> 
