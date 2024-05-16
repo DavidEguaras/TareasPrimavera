@@ -33,9 +33,8 @@ async function cargarVentas() {
 document.addEventListener("DOMContentLoaded", function() {
     const marcaSelect = document.getElementById("marcaSelect");
     const concesionarioSelect = document.getElementById("concesionarioSelect");
-    const cantidadInput = document.getElementById("cantidadInput"); // Agregado: obtener el input de cantidad
+    const cantidadInput = document.getElementById("cantidadInput");
 
-    // Al cargar la página, obtener y mostrar las opciones de marca
     fetch(url + "/marcas")
         .then(response => response.json())
         .then(data => {
@@ -69,11 +68,11 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error("Error al obtener los concesionarios:", error));
     });
 
+    
     //AQUI SE MANEJA EL POST DE UNA VENTA
     document.getElementById("ventaForm").addEventListener("submit", function(event) {
         event.preventDefault();
 
-        // Crear un objeto con los datos del formulario
         const ventaData = {
             marcaID: marcaSelect.value,
             concesionariosID: concesionarioSelect.value,
@@ -83,9 +82,9 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch(url + "/ventas", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json" // Especificar el tipo de contenido como JSON
+                "Content-Type": "application/json" 
             },
-            body: JSON.stringify(ventaData) // Convertir el objeto a formato JSON
+            body: JSON.stringify(ventaData) 
         })
         .then(response => {
             if (response.ok) {
@@ -119,7 +118,6 @@ async function eliminarVenta(idVenta) {
             method: 'DELETE'
         });
         if (response.ok) {
-            // Si la eliminación fue exitosa, recargar las ventas para actualizar la tabla
             cargarVentas();
         } else {
             console.error('Error al eliminar la venta:', response.statusText);

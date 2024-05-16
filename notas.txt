@@ -15,7 +15,7 @@
     (cambiar coches por marca)
     +concesionario (id, nombre, idMarca)
     +movimientos (id, idMarca, idConcesionario, cantidad)
-
-
+    +copia de un array
+-reduce() para datos dom html
 
 Vj5/sv7q9cBF
