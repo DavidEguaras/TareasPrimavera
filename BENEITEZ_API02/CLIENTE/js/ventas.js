@@ -8,10 +8,8 @@ async function cargarVentas() {
         cuerpoTabla.innerHTML = '';
 
         for (const venta of ventas) {
-            const marcaID = venta.marcaID;
             const nombreMarca = await getNombreMarcaByID(venta.marcaID);
-            const concesionariosID = venta.concesionariosID;
-            const nombreConcesionario = await getNombreConcesionarioByID(concesionariosID);
+            const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionariosID);
             const fila = `
                 <tr>
                     <td>${venta.id}</td>
@@ -104,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 de la MARCA: ${nombreMarca}
             `;
             alert("Venta registrada con éxito!");
+            cargarVentas();
             document.getElementById("ventaForm").reset();
         })
         .catch(error => {

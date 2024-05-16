@@ -30,33 +30,39 @@
     </header>
 
 
-    <div id="getMarcas" class="container mt-5">
-        <h2>Ver Marcas</h2>
-        <button class="btn btn-primary" onclick="getMarcas()">Obtener Concesionarios</button>
-        <ul id="todasLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-            <h5>Todos nuestras Marcas:</h5>
-        </ul>
+    <div id="deleteConcesionarios" class="mt-5 container">
+        <h2>Ver y Borrar concesionarios</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Marca ID</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaConcesionarios">
+            </tbody>
+        </table>
     </div>
     
+    <div id="Concesionarios" class="container mt-5">
+        <h2> Registrar un concesionario (POST)</h2>
+        <form id="concesionarioForm" style="margin-bottom: 10px;">
+            <label for="nombreConcesionarioInput" style="margin-bottom: 5px;">Nombre del Concesionario:</label>
+            <input type="text" id="nombreConcesionarioInput" name="nombreConcesionario" required class="form-control" style="margin-bottom: 10px;">
+            
+            <label for="marcaIDInput" style="margin-bottom: 5px;">ID de la Marca:</label>
+            <input type="text" id="marcaIDInput" name="marcaID" class="form-control" required style="margin-bottom: 10px;">
+            
+            <button type="submit" class="btn btn-primary">Registrar Concesionario</button>
+        </form>
+    </div>
     
-    <div id="getConcesionarios" class="container mt-5">
-        <h2>Ver Concesionarios</h2>
-        <button class="btn btn-primary" onclick="getConcesionarios()">Obtener Concesionarios</button>
-        <ul id="todosLosConcesionarios" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-            <h5>Todos nuestros concesionarios:</h5>
-        </ul>
-    </div>
-
-    <div id="getVentas" class="container mt-5">
-        <h2>Ver Ventas</h2>
-        <button class="btn btn-primary" onclick="getVentas()">Obtener Ventas</button>
-        <ul id="todasLasVentas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-            <h5>Todos nuestras ventas:</h5>
-        </ul>
-    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/concesionarios.js"></script>
 </body>
 </html>

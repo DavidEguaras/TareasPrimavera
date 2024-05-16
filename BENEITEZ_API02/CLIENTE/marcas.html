@@ -30,33 +30,43 @@
     </header>
 
 
-    <div id="getMarcas" class="container mt-5">
-        <h2>Ver Marcas</h2>
-        <button class="btn btn-primary" onclick="getMarcas()">Obtener Concesionarios</button>
-        <ul id="todasLasMarcas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-            <h5>Todos nuestras Marcas:</h5>
-        </ul>
+    <tbody id="cuerpoTablaMarcas">
+    </tbody>
+    
+    <div id="deleteMarcas" class="mt-5 container">
+        <h2>Ver y Borrar marcas</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaMarcas">
+            </tbody>
+        </table>
     </div>
     
-    
-    <div id="getConcesionarios" class="container mt-5">
-        <h2>Ver Concesionarios</h2>
-        <button class="btn btn-primary" onclick="getConcesionarios()">Obtener Concesionarios</button>
-        <ul id="todosLosConcesionarios" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-            <h5>Todos nuestros concesionarios:</h5>
-        </ul>
-    </div>
 
-    <div id="getVentas" class="container mt-5">
-        <h2>Ver Ventas</h2>
-        <button class="btn btn-primary" onclick="getVentas()">Obtener Ventas</button>
-        <ul id="todasLasVentas" class="list-group mt-3 text-white bg-dark py-4 pl-4">
-            <h5>Todos nuestras ventas:</h5>
-        </ul>
+    <div id="Marcas" class="container mt-5">
+        <h2> Registrar una marca (POST)</h2>
+        <form id="marcaForm" style="margin-bottom: 10px;">
+            <label for="nombreMarcaInput" style="margin-bottom: 5px;">Nombre de la Marca:</label>
+            <input type="text" id="nombreMarcaInput" name="nombreMarca" class="form-control" required style="margin-bottom: 10px;">
+            
+            <label for="cantidadInput" style="margin-bottom: 5px;">Cantidad:</label>
+            <input type="number" id="cantidadInput" name="cantidad" class="form-control" required style="margin-bottom: 10px;">
+            
+            <button type="submit" class="btn btn-primary">Registrar Marca</button>
+        </form>
     </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/marcas.js"></script>
 </body>
 </html>
