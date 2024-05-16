@@ -1,7 +1,9 @@
+document.addEventListener('DOMContentLoaded', cargarMarcas);
+
 async function cargarMarcas() {
     try {
-        const response = await fetch(url + "/marcas");
-        const marcas = await response.json();
+        const datosCrudos = await fetch(url + "/marcas");
+        const marcas = await datosCrudos.json();
         
         const cuerpoTabla = document.getElementById('cuerpoTablaMarcas');
         cuerpoTabla.innerHTML = '';
@@ -21,7 +23,7 @@ async function cargarMarcas() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', cargarMarcas);
+
 
 
 async function eliminarMarca(idMarca) {
@@ -44,7 +46,7 @@ async function eliminarMarca(idMarca) {
 
 
 
-
+//Aqui se maneja una SOLICITUD POST al server
 document.getElementById("marcaForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -63,15 +65,19 @@ document.getElementById("marcaForm").addEventListener("submit", function(event) 
         },
         body: JSON.stringify(marcaData)
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
+    .then(datosCrudos => {
+        if (datosCrudos.ok) {
+            return datosCrudos.json();
         } else {
             throw new Error("Error al registrar la marca");
         }
     })
-    .then(data => {
-        alert("Marca registrada con éxito!");
+    .then(datosObjeto => {
+        document.getElementById('nuevaMarcaPost').innerHTML = `
+                <li>Marca con ID: ${datosObjeto.id} <br>
+                ${datosObjeto.nombre} unidades vendidas 
+                de la MARCA: ${datosObjeto.cantidad}
+            `;
         cargarMarcas();
         document.getElementById("marcaForm").reset();
     })
@@ -79,4 +85,5 @@ document.getElementById("marcaForm").addEventListener("submit", function(event) 
         console.error("Error al registrar la marca:", error);
         alert("Error al registrar la marca. Por favor, inténtalo de nuevo.");
     });
+
 });

@@ -1,3 +1,5 @@
+// Cargar las ventas al cargar la página
+document.addEventListener('DOMContentLoaded', cargarVentas);
 
 async function cargarVentas() {
     try {
@@ -8,6 +10,7 @@ async function cargarVentas() {
         cuerpoTabla.innerHTML = '';
 
         for (const venta of ventas) {
+            //Llamamos a las funciones asicronas de index.js con un await
             const nombreMarca = await getNombreMarcaByID(venta.marcaID);
             const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionariosID);
             const fila = `
@@ -24,6 +27,22 @@ async function cargarVentas() {
         console.error('Error al cargar las ventas:', error);
     }
 }
+
+async function eliminarVenta(idVenta) {
+    try {
+        const response = await fetch(`${url}/ventas/${idVenta}`, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            cargarVentas();
+        } else {
+            console.error('Error al eliminar la venta:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error al eliminar la venta:', error);
+    }
+}
+
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -70,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         const ventaData = {
-            marcaID: marcaSelect.value,
+            marcaID: marcaSelect.value,//en el html tenemos establecido que el value de cada opcion de marca del select es igual a su ID
             concesionariosID: concesionarioSelect.value,
             cantidad_vendida: cantidadInput.value
         };
@@ -90,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(async datosObjeto => {
+            //Una vez que tenemos los datos llamamos a la funcion asincrona para obtener el nombre la marca al hacer una venta (a partir del marcaID)
             const nombreMarca = await getNombreMarcaByID(marcaSelect.value);
             document.getElementById('nuevaVentaPOST').innerHTML = `
                 <li>VENTA con ID: ${datosObjeto.id} <br>
@@ -108,20 +128,5 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-async function eliminarVenta(idVenta) {
-    try {
-        const response = await fetch(`${url}/ventas/${idVenta}`, {
-            method: 'DELETE'
-        });
-        if (response.ok) {
-            cargarVentas();
-        } else {
-            console.error('Error al eliminar la venta:', response.statusText);
-        }
-    } catch (error) {
-        console.error('Error al eliminar la venta:', error);
-    }
-}
 
-// Cargar las ventas al cargar la página
-document.addEventListener('DOMContentLoaded', cargarVentas);
+
