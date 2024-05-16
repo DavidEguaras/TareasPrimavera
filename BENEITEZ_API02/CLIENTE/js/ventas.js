@@ -26,10 +26,6 @@ async function cargarVentas() {
 }
 
 
-
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
     const marcaSelect = document.getElementById("marcaSelect");
     const concesionarioSelect = document.getElementById("concesionarioSelect");
