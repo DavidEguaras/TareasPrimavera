@@ -30,6 +30,7 @@
     </header>
 
 
+
     <div id="deleteConcesionarios" class="mt-5 container">
         <h2>Ver y Borrar concesionarios</h2>
         <table class="table">
@@ -44,6 +45,19 @@
             <tbody id="cuerpoTablaConcesionarios">
             </tbody>
         </table>
+    </div>
+
+    <div id="editarConcesionario" style="display:none;" class="container">
+        <h2>Editar Concesionario</h2>
+        <form id="editarConcesionarioForm">
+            <input type="hidden" id="idConcesionarioEdit" name="idConcesionario">
+            <label for="nombreConcesionarioEdit">Nombre del Concesionario:</label>
+            <input type="text" id="nombreConcesionarioEdit" name="nombreConcesionario" required>
+            <label for="marcaIDEdit">ID de la Marca:</label>
+            <input type="number" id="marcaIDEdit" name="marcaID" required>
+            <button type="submit">Guardar Cambios</button>
+            <button type="button" onclick="document.getElementById('editarConcesionario').style.display='none'">Cancelar</button>
+        </form>
     </div>
     
     <div id="Concesionarios" class="container mt-5">

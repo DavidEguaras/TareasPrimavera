@@ -1,6 +1,7 @@
-// Cargar las ventas al cargar la página
+// Cargar las ventas al cargar la pagina
 document.addEventListener('DOMContentLoaded', cargarVentas);
 
+//Cargamos una tabla con todos los registros de la tabla
 async function cargarVentas() {
     try {
         const response = await fetch(`${url}/ventas`);
@@ -27,7 +28,6 @@ async function cargarVentas() {
         console.error('Error al cargar las ventas:', error);
     }
 }
-
 async function eliminarVenta(idVenta) {
     try {
         const response = await fetch(`${url}/ventas/${idVenta}`, {
@@ -44,7 +44,7 @@ async function eliminarVenta(idVenta) {
 }
 
 
-
+//Este evento, tambien salta cuando se carga la pagina, se encarga de hacer una peticion de las marcas para rellenar las opciones del formulario post
 document.addEventListener("DOMContentLoaded", function() {
     const marcaSelect = document.getElementById("marcaSelect");
     const concesionarioSelect = document.getElementById("concesionarioSelect");
@@ -54,10 +54,11 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             data.forEach(marca => {
+                //Aqui asignamos que el marcaSelect.value sea igual a marca.id (option value =), lo que nos servira para referenciar el id facilmente
                 marcaSelect.innerHTML += `<option value="${marca.id}">${marca.nombre}</option>`;
             });
 
-            // Simular un cambio de selección para cargar automáticamente los concesionarios
+            // Simular un cambio de seleccion para cargar automaticamente los concesionarios
             marcaSelect.dispatchEvent(new Event("change"));
         })
         .catch(error => console.error("Error al obtener las marcas:", error));

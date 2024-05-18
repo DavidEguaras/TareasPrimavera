@@ -1,8 +1,7 @@
 const db = require('../DATABASES/db.js');
 
 const getMarcas = (req, res) => {
-    // Consulta a la base de datos
-    db.getConnection((err, connection) =>{
+    db.getConnection((err, connection) => {
         connection.query('SELECT * FROM marcas', (err, resultados) => {
             if (err) {
                 console.error('Error al obtener datos', err);
@@ -12,7 +11,7 @@ const getMarcas = (req, res) => {
                 connection.release();
             }
         });
-    })
+    });
 };
 
 const getMarcaById = (req, res) => {
@@ -30,7 +29,7 @@ const getMarcaById = (req, res) => {
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
                 if (resultados.length > 0) {
-                    res.json(resultados[0]); // Devuelve el primer resultado (que debería ser único)
+                    res.json(resultados[0]);
                 } else {
                     res.status(404).json({ error: 'Registro no encontrado' });
                 }
@@ -40,60 +39,60 @@ const getMarcaById = (req, res) => {
 };
 
 const crearMarca = (req, res) => {
-    const { nombreMarca, cantidad } = req.body;
+    const { nombre, cantidad } = req.body;
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('INSERT INTO marcas (nombre, cantidad) VALUES (?, ?)', [nombreMarca, cantidad], (err, resultado) => {
+        connection.query('INSERT INTO marcas (nombre, cantidad) VALUES (?, ?)', [nombre, cantidad], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al guardar datos en la base de datos:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
-                res.json({ recibido: true, nombreMarca, cantidad, id: resultado.insertId });
+                res.json({ recibido: true, nombre, cantidad, id: resultado.insertId });
             }
         });
     });
 };
 
 const patchMarca = (req, res) => {
-    const { nuevoNombre, cantidad } = req.body;
+    const { nombre, cantidad } = req.body;
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('UPDATE marcas SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
+        connection.query('UPDATE marcas SET nombre = ?, cantidad = ? WHERE id = ?', [nombre, cantidad, req.params.id], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al actualizar datos en la base de datos:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
-                res.json({ actualizado: true, nuevoNombre, cantidad, id: req.params.id });
+                res.json({ actualizado: true, nombre, cantidad, id: req.params.id });
             }
         });
     });
 };
 
 const putMarca = (req, res) => {
-    const { nuevoNombre, cantidad } = req.body;
+    const { nombre, cantidad } = req.body; 
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('UPDATE marcas SET nombre = ?, cantidad = ? WHERE id = ?', [nuevoNombre, cantidad, req.params.id], (err, resultado) => {
+        connection.query('UPDATE marcas SET nombre = ?, cantidad = ? WHERE id = ?', [nombre, cantidad, req.params.id], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al actualizar datos en la base de datos:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
-                res.json({ actualizado: true, nuevoNombre, cantidad, id: req.params.id });
+                res.json({ actualizado: true, nombre, cantidad, id: req.params.id });
             }
         });
     });
@@ -122,7 +121,6 @@ const deleteMarcaById = (req, res) => {
         });
     });
 };
-
 
 module.exports = {
     getMarcas,

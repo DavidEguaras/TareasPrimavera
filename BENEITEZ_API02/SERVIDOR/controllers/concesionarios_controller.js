@@ -100,20 +100,20 @@ const patchConcesionario = (req, res) => {
 };
 
 const putConcesionario = (req, res) => {
-    const { nuevoNombre, marcaID } = req.body;
+    const { nombre, marcaID } = req.body;
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('UPDATE concesionarios SET nombre = ?, marcaID = ? WHERE id = ?', [nuevoNombre, marcaID, req.params.id], (err, resultado) => {
+        connection.query('UPDATE concesionarios SET nombre = ?, marcaID = ? WHERE id = ?', [nombre, marcaID, req.params.id], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al actualizar datos en la base de datos:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
-                res.json({ actualizado: true, nuevoNombre, marcaID, id: req.params.id });
+                res.json({ actualizado: true, nombre, marcaID, id: req.params.id });
             }
         });
     });
