@@ -1,3 +1,8 @@
+// Es un metodo de arrays, recibe dos argumentos el primero un valor que esta siendo acumulado, el segundo el elemento se que esta iterando del array
+// Reduce tiene que devolver el primer argumento que se va a ir acumulando
+
+
+
 //funcion reducer
 //const reducer = (acumulador, valorActual) => nuevoAcumulador;
 
