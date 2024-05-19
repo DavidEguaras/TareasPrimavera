@@ -1,0 +1,2 @@
+Map nos permite crear un nuevo array que tendra la misma longitud que el array inicial sobre la que llamamos a map
+Nos permite pasarle una funcion como argumento y aplicar esa funcion a cada uno de los elementos dentro del array

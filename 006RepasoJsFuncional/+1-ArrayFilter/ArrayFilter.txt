@@ -1,0 +1,7 @@
+El objetivo de filter es poder crear un array de igual o menor cantidad de elementos que el aray con el que estamos trabajando inicialmente
+
+Por ejemplo pongamos que vamos a pedir datos de una API o BD, lo que seria un array bastante grande
+    el filter nos permite quedarnos con una version del array que sera bastante menor en tamano (cuando queremos quedarnos con solamente una parte de los metodos del array)
+
+-Es un metodo inmutable que devuelve un array completamente nuevo de la misma cantidad o menos elementos que el array original
+-Si llamamos al metodo filter de un array de 10 elementos o menos, este nos devolvera OTRO array con 10  o menos de esos elementos
