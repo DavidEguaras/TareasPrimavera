@@ -12,7 +12,7 @@ function cargarMarcas(){
     fetch(url + "/marcas")
         .then(response => response.json())
         .then(marcas => {
-            const tablaMarcas = document.getElementById(tablaMarcas);
+            const tablaMarcas = document.getElementById('tablaMarcas');
             tablaMarcas.innerHTML = '';
 
             const filasTabla = marcas.map(marca => `
@@ -24,7 +24,7 @@ function cargarMarcas(){
                         <button onClick ="eliminarMarca(${marca.id})">Eliminar</button>
                     </td>
                 </tr>
-            `);
+            `).join('');
 
             tablaMarcas.innerHTML += filasTabla;
         })

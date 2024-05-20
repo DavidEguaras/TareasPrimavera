@@ -106,21 +106,44 @@ const deleteMarcaById = (req, res) => {
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('DELETE FROM marcas WHERE id = ?', [idMarca], (err, resultado) => {
-            connection.release();
+
+        // Primero eliminamos las ventas asociadas a los concesionarios de la marca
+        connection.query('DELETE ventas FROM ventas INNER JOIN concesionarios ON ventas.concesionariosID = concesionarios.id WHERE concesionarios.marcaID = ?', [idMarca], (err, resultadoVentas) => {
             if (err) {
-                console.error('Error al eliminar la marca:', err);
+                console.error('Error al eliminar las ventas asociadas:', err);
+                connection.release();
                 res.status(500).json({ error: 'Error interno del servidor' });
-            } else {
-                if (resultado.affectedRows > 0) {
-                    res.json({ eliminado: true, id: idMarca });
-                } else {
-                    res.status(404).json({ error: 'No se encontró ninguna marca con el ID proporcionado' });
-                }
+                return;
             }
+
+            // Luego eliminamos los concesionarios asociados a la marca
+            connection.query('DELETE FROM concesionarios WHERE marcaID = ?', [idMarca], (err, resultadoConcesionarios) => {
+                if (err) {
+                    console.error('Error al eliminar los concesionarios asociados:', err);
+                    connection.release();
+                    res.status(500).json({ error: 'Error interno del servidor' });
+                    return;
+                }
+
+                // Finalmente, eliminamos la marca
+                connection.query('DELETE FROM marcas WHERE id = ?', [idMarca], (err, resultadoMarca) => {
+                    connection.release();
+                    if (err) {
+                        console.error('Error al eliminar la marca:', err);
+                        res.status(500).json({ error: 'Error interno del servidor' });
+                    } else {
+                        if (resultadoMarca.affectedRows > 0) {
+                            res.json({ eliminado: true, id: idMarca });
+                        } else {
+                            res.status(404).json({ error: 'No se encontró ninguna marca con el ID proporcionado' });
+                        }
+                    }
+                });
+            });
         });
     });
 };
+
 
 module.exports = {
     getMarcas,

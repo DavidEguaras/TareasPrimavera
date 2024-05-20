@@ -8,7 +8,15 @@ export class Juego{
         this.finalizado = false;
         this.fichaJugador1 = 'X';
         this.fichaJugador2 = 'O';
+        this.filas = 3;
+        this.columnas = 3;
+    }
 
+    get filas() {
+        return this._filas;
+    }
+    get columnas() {
+        return this._columnas;
     }
 
     comprobarTresEnRaya(){

@@ -1,47 +1,55 @@
-// Cargar las ventas al cargar la pagina
 document.addEventListener('DOMContentLoaded', cargarVentas);
 
-//Cargamos una tabla con todos los registros de la tabla
-async function cargarVentas() {
-    try {
-        const response = await fetch(`${url}/ventas`);
-        const ventas = await response.json();
-        
-        const cuerpoTabla = document.getElementById('cuerpoTabla');
-        cuerpoTabla.innerHTML = '';
 
-        for (const venta of ventas) {
-            //Llamamos a las funciones asicronas de index.js con un await
-            const nombreMarca = await getNombreMarcaByID(venta.marcaID);
-            const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionariosID);
-            const fila = `
-                <tr>
-                    <td>${venta.id}</td>
-                    <td>${nombreMarca}</td>
-                    <td>${nombreConcesionario}</td>
-                    <td>${venta.cantidad_vendida}</td>
-                    <td><button onclick="eliminarVenta(${venta.id})">Eliminar</button></td>
-                </tr>`;
-            cuerpoTabla.innerHTML += fila;
-        }
-    } catch (error) {
-        console.error('Error al cargar las ventas:', error);
-    }
+//Cargamos la tabla con las ventas
+function cargarVentas() {
+    fetch(url + "/ventas")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al cargar las ventas');
+            }
+            return response.json();
+        })
+        .then(ventas => {
+            const cuerpoTabla = document.getElementById('cuerpoTabla');
+            cuerpoTabla.innerHTML = '';
+
+            //hacemos que la funcion sea asincrona para poder realizar las peticiones de getNombreMarcaByID y getNombreConcesionarioByID, que son peticiones asincronas tambien
+            ventas.forEach(async venta => {
+                try {
+                    const nombreMarca = await getNombreMarcaByID(venta.marcaID);
+                    const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionariosID);
+                    const fila = `
+                        <tr>
+                            <td>${venta.id}</td>
+                            <td>${nombreMarca}</td>
+                            <td>${nombreConcesionario}</td>
+                            <td>${venta.cantidad_vendida}</td>
+                            <td><button onclick="eliminarVenta(${venta.id})">Eliminar</button></td>
+                        </tr>`;
+                    cuerpoTabla.innerHTML += fila;
+                } catch (error) {
+                    console.error('Error al obtener nombres:', error);
+                }
+            });
+        })
+        .catch(error => console.error('Error al cargar las ventas:', error));
 }
-async function eliminarVenta(idVenta) {
-    try {
-        const response = await fetch(`${url}/ventas/${idVenta}`, {
-            method: 'DELETE'
-        });
-        if (response.ok) {
-            cargarVentas();
-        } else {
-            console.error('Error al eliminar la venta:', response.statusText);
+
+//Eliminamos el registro de venta que tenga el id pasado como parametro
+function eliminarVenta(idVenta) {
+    fetch(url + "/ventas/" + idVenta, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al eliminar la venta');
         }
-    } catch (error) {
-        console.error('Error al eliminar la venta:', error);
-    }
+        cargarVentas();
+    })
+    .catch(error => console.error('Error al eliminar la venta:', error));
 }
+
 
 
 //Este evento, tambien salta cuando se carga la pagina, se encarga de hacer una peticion de las marcas para rellenar las opciones del formulario post
