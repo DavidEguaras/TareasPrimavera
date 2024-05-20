@@ -1,14 +1,23 @@
 const db = require('../DATABASES/db.js');
 
 const getMarcas = (req, res) => {
+    const nombreFiltro = req.query.nombre || '';
+    const sqlQuery = 'SELECT * FROM marcas WHERE nombre LIKE ?';
+    const filtro = '%' + nombreFiltro + '%';
+
     db.getConnection((err, connection) => {
-        connection.query('SELECT * FROM marcas', (err, resultados) => {
+        if (err) {
+            console.error('Error al obtener conexión:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+            return;
+        }
+        connection.query(sqlQuery, [filtro], (err, resultados) => {
+            connection.release();
             if (err) {
                 console.error('Error al obtener datos', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
                 res.json(resultados);
-                connection.release();
             }
         });
     });
