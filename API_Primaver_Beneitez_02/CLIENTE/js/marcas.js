@@ -1,17 +1,13 @@
-// Event listener para cargar la tabla de marcas cuando se carga el documento
 document.addEventListener('DOMContentLoaded', cargarMarcas);
 
-// Funcion asincronica para cargar y mostrar marcas desde el servidor
-async function cargarMarcas() {
-    try {
-        const datosCrudos = await fetch(url + "/marcas");  // Solicita datos de marcas al servidor
-        const marcas = await datosCrudos.json();  // Convierte la respuesta a JSON
+function cargarMarcas() {
+    fetch(url + "/marcas")
+        .then(response => response.json())
+        .then(marcas => {
+            const cuerpoTabla = document.getElementById('cuerpoTablaMarcas');
+            cuerpoTabla.innerHTML = '';
 
-        const cuerpoTabla = document.getElementById('cuerpoTablaMarcas');
-        cuerpoTabla.innerHTML = '';  // Limpia la tabla antes de agregar nuevos datos
-
-        for (const marca of marcas) {  // Itera sobre cada marca y crea una fila en la tabla HTML
-            const fila = `
+            const filas = marcas.map(marca => `
                 <tr>
                     <td>${marca.id}</td>
                     <td>${marca.nombre}</td>
@@ -20,51 +16,46 @@ async function cargarMarcas() {
                         <button onclick="cargarFormularioEdicionMarca(${marca.id})">Editar</button>
                         <button onclick="eliminarMarca(${marca.id})">Eliminar</button>
                     </td>
-                </tr>`;
-            cuerpoTabla.innerHTML += fila;  // Agrega la fila a la tabla
-        }
-        
-    } catch (error) {
-        console.error('Error al cargar las marcas:', error);  // Maneja posibles errores en la carga de datos
-    }
+                </tr>
+            `).join('');
+
+            cuerpoTabla.innerHTML = filas;
+        })
+        .catch(error => console.error('Error al cargar las marcas:', error));
 }
 
-// Funcion para eliminar una marca especifica
-async function eliminarMarca(idMarca) {
-    try {
-        const response = await fetch(url + "/marcas/" + idMarca, {
-            method: 'DELETE'  // Metodo HTTP DELETE para eliminar la marca
-        });
+function eliminarMarca(idMarca) {
+    fetch(url + "/marcas/" + idMarca, {
+        method: 'DELETE'
+    })
+    .then(response => {
         if (response.ok) {
-            cargarMarcas();  // Recarga la lista de marcas si la eliminacion fue exitosa
-            alert("Marca eliminada con exito!");
+            cargarMarcas();
+            alert("Marca eliminada con éxito!");
         } else {
             console.error('Error al eliminar la marca:', response.statusText);
-            alert("Error al eliminar la marca. Por favor, intentalo de nuevo.");
+            alert("Error al eliminar la marca. Por favor, inténtalo de nuevo.");
         }
-    } catch (error) {
+    })
+    .catch(error => {
         console.error('Error al eliminar la marca:', error);
-        alert("Error al eliminar la marca. Por favor, intentalo de nuevo.");
-    }
+        alert("Error al eliminar la marca. Por favor, inténtalo de nuevo.");
+    });
 }
 
-// Funcion para cargar datos de una marca en el formulario de edicion
-async function cargarFormularioEdicionMarca(idMarca) {
-    try {
-        const response = await fetch(url + "/marcas/" + idMarca);
-        const marca = await response.json();
-
-        document.getElementById("nombreMarcaEdit").value = marca.nombre;
-        document.getElementById("cantidadEdit").value = marca.cantidad;
-        document.getElementById("idMarcaEdit").value = marca.id;
-        
-        document.getElementById("editarMarca").style.display = "block";  // Muestra el formulario de edicion
-    } catch (error) {
-        console.error('Error al cargar la marca para editar:', error);
-    }
+function cargarFormularioEdicionMarca(idMarca) {
+    fetch(url + "/marcas/" + idMarca)
+        .then(response => response.json())
+        .then(marca => {
+            document.getElementById("nombreMarcaEdit").value = marca.nombre;
+            document.getElementById("cantidadEdit").value = marca.cantidad;
+            document.getElementById("idMarcaEdit").value = marca.id;
+            
+            document.getElementById("editarMarca").style.display = "block";
+        })
+        .catch(error => console.error('Error al cargar la marca para editar:', error));
 }
 
-// Maneja el evento de envio del formulario de edicion de marcas
 document.getElementById("editarMarcaForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -78,7 +69,7 @@ document.getElementById("editarMarcaForm").addEventListener("submit", function(e
     };
 
     fetch(url + "/marcas/" + idMarca, {
-        method: "PUT",  // Metodo HTTP PUT para actualizar la marca
+        method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
@@ -86,15 +77,15 @@ document.getElementById("editarMarcaForm").addEventListener("submit", function(e
     })
     .then(response => {
         if (response.ok) {
-            alert("Marca actualizada con exito!");
-            cargarMarcas();  // Recarga las marcas despues de actualizar
-            document.getElementById("editarMarca").style.display = "none";  // Oculta el formulario de edicion
+            alert("Marca actualizada con éxito!");
+            cargarMarcas();
+            document.getElementById("editarMarca").style.display = "none";
         } else {
             throw new Error("Error al actualizar la marca");
         }
     })
     .catch(error => {
         console.error("Error al actualizar la marca:", error);
-        alert("Error al actualizar la marca. Por favor, intentalo de nuevo.");
+        alert("Error al actualizar la marca. Por favor, inténtalo de nuevo.");
     });
 });

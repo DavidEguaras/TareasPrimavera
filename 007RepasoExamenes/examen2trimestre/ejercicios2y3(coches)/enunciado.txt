@@ -1,0 +1,18 @@
+Ejercicio 2º - Eliminar los registros de una base de datos (2 puntos)
+Partiendo de la API del lado servidor “coches” que estás utilizando en clase, 
+realiza una página web que:
+Presente todos los registros de marcas en una tabla donde se vean los valores de los campos.
+Añade una columna con un botón en cada fila que permita eliminar ese registro.
+Al hacer clic sobre el botón, que se elimine el registro y se muestre la tabla con los nuevos datos.
+
+Ejercicio 3º - Presentar información de una API servidor (2 puntos)
+-Partiendo de la API del lado servidor “coches” que estás utilizando en clase, o mejor aún, partiendo del ejercicio anterior, 
+    realiza una página web del lado cliente que consiga:
+-Mostrar el valor de los campos de aquellos registros de la tabla marcas cuyo nombre comience por una cadena de texto que ponga el usuario, 
+    independientemente de que el usuario introduzca mayúsculas o no.
+-Si se envía una cadena vacía, se mostrarán todas las marcas.
+-Si no hay marcas que cumplan con el filtro de búsqueda, se dejará la tabla vacía.
+-La cantidad de marcas se verá con un formato y alineación adecuados.
+-Las marcas se presentarán en una tabla en cuyo encabezado estarán los nombres de los campos.
+-En las respuestas del lado servidor se deben devolver únicamente aquellos registros solicitados.
+-En la valoración de este ejercicio se tendrá en cuenta la facilidad de uso de la página.
