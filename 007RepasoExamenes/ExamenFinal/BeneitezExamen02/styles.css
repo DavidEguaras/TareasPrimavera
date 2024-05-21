@@ -1,0 +1,28 @@
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para el botón de búsqueda */
+#search-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Estilos para el input de búsqueda */
+#search-input {
+    padding: 5px;
+    margin-right: 10px;
+}

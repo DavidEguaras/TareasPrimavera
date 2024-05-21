@@ -32,6 +32,7 @@ const indexedMascotas = mascotas.reduce ((accumulator, element) => ({
 console.log(indexedMascotas['Baldur']);
 
 
+
 const anidado = [1, [2, 3], 4, [5]];
 // [1, 2, 3, 4, 5]
 
