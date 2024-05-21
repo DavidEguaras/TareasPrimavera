@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <a href="index.html">
+                <h1 class="text-center">API de Coches de David</h1>
+            </a>
+            <h2 class="text-center">Ventas</h2>
+        </div>
+
+        <div class="dropdown container text-center">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              MENU
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="concesionarios.html">Concesionarios</a>
+                <a class="dropdown-item" href="marcas.html">Marcas</a>
+                <a class="dropdown-item" href="ventas.html">Ventas</a>
+                <a class="dropdown-item" href="registrosDeVentas.html">Registro de Ventas</a>
+            </div>
+          </div>
+    </header>
+
+    <main class="container mt-5">
+        <h1>Ventas</h1>
+
+        <div id="deleteVentas" class="mt-5 container">
+            <h2>Ver y Borrar ventas</h2>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Concesionario</th>
+                        <th>Cantidad Vendida</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Ventas" class="container mt-5">
+            <h2> Realizar una venta (POST)</h2>
+            <form id="ventaForm" style="margin-bottom: 10px;">
+                <label for="marcaSelect" style="margin-bottom: 5px;">Selecciona una Marca (haz click):</label>
+                <select id="marcaSelect" name="marca" class="form-control" style="margin-bottom: 10px;"></select>
+                
+                <label for="concesionarioSelect" style="margin-bottom: 5px;">Selecciona un Concesionario:</label>
+                <select id="concesionarioSelect" name="concesionario" class="form-control" style="margin-bottom: 10px;"></select>
+            
+                <label for="cantidadInput" style="margin-bottom: 5px;">Cantidad Vendida:</label>
+                <input type="number" id="cantidadInput" name="cantidad" class="form-control" style="margin-bottom: 10px;">
+                
+                <button type="submit" class="btn btn-primary">Registrar Venta</button>
+            </form>
+            <ul id="nuevaVentaPOST" class="list-group mt-3 text-white bg-dark py-4 pl-4">
+                <h5>Venta Registrada:</h5>
+            </ul>
+        </div>
+
+        
+        
+        
+    </main>
+    
+    <footer></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/ventas.js"></script>
+</body>
+</html>

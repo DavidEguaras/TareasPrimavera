@@ -18,7 +18,7 @@ function cargarVentas() {
             ventas.forEach(async venta => {
                 try {
                     const nombreMarca = await getNombreMarcaByID(venta.marcaID);
-                    const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionariosID);
+                    const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionarioID);
                     const fila = `
                         <tr>
                             <td>${venta.id}</td>
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const ventaData = {
             marcaID: marcaSelect.value,//en el html tenemos establecido que el value de cada opcion de marca del select es igual a su ID
-            concesionariosID: concesionarioSelect.value,
+            concesionarioID: concesionarioSelect.value,
             cantidad_vendida: cantidadInput.value
         };
 

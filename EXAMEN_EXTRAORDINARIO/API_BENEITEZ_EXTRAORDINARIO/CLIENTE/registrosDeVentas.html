@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <a href="index.html">
+                <h1 class="text-center">API de Coches de David</h1>
+            </a>
+            <h2 class="text-center">Registro de Ventas</h2>
+        </div>
+
+        <div class="dropdown container text-center">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              MENU
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="concesionarios.html">Concesionarios</a>
+                <a class="dropdown-item" href="marcas.html">Marcas</a>
+                <a class="dropdown-item" href="ventas.html">Ventas</a>
+            </div>
+          </div>
+    </header>
+
+    <main class="container mt-5">
+        <h1>Ventas</h1>
+
+
+
+        <div id="Ventas" class="container mt-5 ">
+
+            <div id ="ventas1" style = "border-style: solid">
+                <h2>Buscar las ventas de un concesionario</h2>
+                <form id="ventaConcesionariosForm" style="margin-bottom: 10px;">
+                    <label for="concesionarioSelect" style="margin-bottom: 5px;">Selecciona un Concesionario:</label>
+                    <select id="concesionarioSelect" name="concesionario" class="form-control" style="margin-bottom: 10px;"></select>
+                </form>
+
+                <div class="container">
+                    <h2>Ventas Concesionarios</h2>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Marca</th>
+                                <th>Concesionario</th>
+                                <th>Cantidad Vendida</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaVentasConcesionarios">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+
+
+            <div id="ventas2" class="mt-5" style ="border-style: solid">
+                <h2>Buscar las ventas de una marca</h2>
+                <form id="ventaMarcasForm" style="margin-bottom: 10px;">
+                    <label for="marcaSelect" style="margin-bottom: 5px;">Selecciona una Marca (haz click):</label>
+                    <select id="marcaSelect" name="marca" class="form-control" style="margin-bottom: 10px;"></select>
+                </form>
+    
+                
+                <div class="mb-5 container">
+                    <h2>Ventas de una marca</h2>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Marca</th>
+                                <th>Concesionario</th>
+                                <th>Cantidad Vendida</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaVentasMarcas">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="ventas3" class="mt-5" style = "border-style: solid">
+                <h2>Buscar las ventas de todos los concesionarios de una marca</h2>
+                <form id="ventaMarcasConcesionariosForm" style="margin-bottom: 10px;">
+                    <label for="marcaConcesionariosSelect" style="margin-bottom: 5px;">Selecciona una Marca (haz click):</label>
+                    <select id="marcaConcesionariosSelect" name="marca" class="form-control" style="margin-bottom: 10px;"></select>
+                </form>
+                <div  class="mb-5 container">
+                    <h2>Ventas de los concesionarios de una marca</h2>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Marca</th>
+                                <th>Concesionario</th>
+                                <th>Cantidad Vendida</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaMarcaVentasConcesionarios">
+                        </tbody>
+                    </table>
+                </div>
+            
+            </div>
+
+
+        </div>
+
+        
+        
+        
+    </main>
+    
+    <footer></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/ordenarVentas.js"></script>
+</body>
+</html>
+
+</body>
+</html>

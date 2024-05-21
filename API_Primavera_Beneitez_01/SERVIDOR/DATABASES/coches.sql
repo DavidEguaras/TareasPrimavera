@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS concesionarios (
 CREATE TABLE IF NOT EXISTS ventas (
     id INT NOT NULL AUTO_INCREMENT,
     marcaID INT,
-    concesionariosID INT,
+    concesionarioID INT,
     cantidad vendida INT,
     PRIMARY KEY (id),
     FOREIGN KEY (marcaID) REFERENCES marcas(id),

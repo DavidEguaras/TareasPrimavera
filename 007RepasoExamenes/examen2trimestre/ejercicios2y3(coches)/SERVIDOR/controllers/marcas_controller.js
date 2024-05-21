@@ -117,7 +117,7 @@ const deleteMarcaById = (req, res) => {
         }
 
         // Primero eliminamos las ventas asociadas a los concesionarios de la marca
-        connection.query('DELETE ventas FROM ventas INNER JOIN concesionarios ON ventas.concesionariosID = concesionarios.id WHERE concesionarios.marcaID = ?', [idMarca], (err, resultadoVentas) => {
+        connection.query('DELETE ventas FROM ventas INNER JOIN concesionarios ON ventas.concesionarioID = concesionarios.id WHERE concesionarios.marcaID = ?', [idMarca], (err, resultadoVentas) => {
             if (err) {
                 console.error('Error al eliminar las ventas asociadas:', err);
                 connection.release();

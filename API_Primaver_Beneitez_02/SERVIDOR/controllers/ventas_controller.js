@@ -20,7 +20,7 @@ const getVentas = (req, res) => {
 };
 
 const crearVenta = (req, res) => {
-    const { marcaID, concesionariosID, cantidad_vendida } = req.body;
+    const { marcaID, concesionarioID, cantidad_vendida } = req.body;
     console.log('Datos recibidos:', req.body);
     db.getConnection((err, connection) => {
         if (err) {
@@ -28,13 +28,13 @@ const crearVenta = (req, res) => {
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (?, ?, ?)', [marcaID, concesionariosID, cantidad_vendida], (err, resultado) => {
+        connection.query('INSERT INTO ventas (marcaID, concesionarioID, cantidad_vendida) VALUES (?, ?, ?)', [marcaID, concesionarioID, cantidad_vendida], (err, resultado) => {
             connection.release();
             if (err) {
                 console.error('Error al guardar datos de la venta en la base de datos:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
-                res.json({ recibido: true, marcaID, concesionariosID, cantidad_vendida, id: resultado.insertId });
+                res.json({ recibido: true, marcaID, concesionarioID, cantidad_vendida, id: resultado.insertId });
             }
         });
     });

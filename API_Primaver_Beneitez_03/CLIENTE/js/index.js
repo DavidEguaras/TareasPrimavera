@@ -106,7 +106,7 @@ async function getVentas(){
         const listaVentas = [];
         for (const venta of ventas) {
             const nombreMarca = await getNombreMarcaByID(venta.marcaID);
-            const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionariosID);
+            const nombreConcesionario = await getNombreConcesionarioByID(venta.concesionarioID);
             const itemVenta = `
             <li style="display: flex; justify-content: space-between; padding: 5px; margin-right:100px;">
                 <span style="font-weight: bold;">ID:</span> 
