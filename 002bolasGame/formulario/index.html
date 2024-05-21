@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario de Registro de Alumnos</title>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+<h1>Formulario de Registro de Alumnos</h1>
+<form id="registroForm">
+    <div>
+        <label for="matricula">Número de matrícula:</label>
+        <input type="text" id="matricula" disabled>
+    </div>
+    <div>
+        <label for="grupo">Grupo de clase:</label>
+        <select id="grupo">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+    </div>
+    <div>
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni">
+        <span class="error" id="dniError"></span>
+    </div>
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre">
+    </div>
+    <div>
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos">
+    </div>
+    <div>
+        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fechaNacimiento">
+        <span class="error" id="fechaNacimientoError"></span>
+    </div>
+    <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email">
+    </div>
+    <div>
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username">
+    </div>
+    <div>
+        <label for="password">Contraseña:</label>
+        <input type="text" id="password" readonly>
+    </div>
+    <button type="submit">Guardar Alumno</button>
+</form>
+
+<div id="alumnoInfo"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
