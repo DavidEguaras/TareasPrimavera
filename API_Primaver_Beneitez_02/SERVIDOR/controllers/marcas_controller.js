@@ -1,16 +1,16 @@
 const db = require('../DATABASES/db.js');
 
-const getVentas = (req, res) => {
+const getMarcas = (req, res) => {
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('SELECT * FROM ventas', (err, resultados) => {
+        connection.query('SELECT * FROM marcas', (err, resultados) => {
             connection.release();
             if (err) {
-                console.error('Error al obtener datos de ventas:', err);
+                console.error('Error al obtener datos de marcas:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
                 res.json(resultados);
@@ -19,88 +19,89 @@ const getVentas = (req, res) => {
     });
 };
 
-const crearVenta = (req, res) => {
-    const { marcaID, concesionariosID, cantidad_vendida } = req.body;
-    console.log('Datos recibidos:', req.body);
+const getMarcaById = (req, res) => {
+    const idMarca = req.params.id;
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('INSERT INTO ventas (marcaID, concesionariosID, cantidad_vendida) VALUES (?, ?, ?)', [marcaID, concesionariosID, cantidad_vendida], (err, resultado) => {
-            if (err) {
-                connection.release();
-                console.error('Error al guardar datos de la venta en la base de datos:', err);
-                res.status(500).json({ error: 'Error interno del servidor' });
-            } else {
-                const ventaId = resultado.insertId;
-                actualizarCantidadMarca(connection, marcaID, cantidad_vendida, (err) => {
-                    connection.release();
-                    if (err) {
-                        console.error('Error al actualizar la cantidad:', err);
-                        res.status(500).json({ error: 'Error interno del servidor' });
-                    } else {
-                        res.json({ recibido: true, marcaID, concesionariosID, cantidad_vendida, id: ventaId });
-                    }
-                });
-            }
-        });
-    });
-};
-
-const actualizarCantidadMarca = (connection, marcaID, cantidadVendida, callback) => {
-    connection.query('UPDATE marcas SET cantidad = cantidad - ? WHERE id = ?', [cantidadVendida, marcaID], (err, resultado) => {
-        if (err) {
-            callback(err);
-        } else {
-            callback(null);
-        }
-    });
-};
-
-const getVentaById = (req, res) => {
-    const idVenta = req.params.id;
-    db.getConnection((err, connection) => {
-        if (err) {
-            console.error('Error al obtener conexión:', err);
-            res.status(500).json({ error: 'Error interno del servidor' });
-            return;
-        }
-        connection.query('SELECT * FROM ventas WHERE id = ?', [idVenta], (err, resultados) => {
+        connection.query('SELECT * FROM marcas WHERE id = ?', [idMarca], (err, resultados) => {
             connection.release();
             if (err) {
-                console.error('Error al obtener la venta:', err);
+                console.error('Error al obtener la marca:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
                 if (resultados.length > 0) {
                     res.json(resultados[0]);
                 } else {
-                    res.status(404).json({ error: 'Venta no encontrada' });
+                    res.status(404).json({ error: 'Marca no encontrada' });
                 }
             }
         });
     });
 };
 
-const eliminarVenta = (req, res) => {
-    const idVenta = req.params.id;
+const crearMarca = (req, res) => {
+    const { nombre, cantidad } = req.body;
     db.getConnection((err, connection) => {
         if (err) {
             console.error('Error al obtener conexión:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
             return;
         }
-        connection.query('DELETE FROM ventas WHERE id = ?', [idVenta], (err, resultado) => {
+        connection.query('INSERT INTO marcas (nombre, cantidad) VALUES (?, ?)', [nombre, cantidad], (err, resultado) => {
             connection.release();
             if (err) {
-                console.error('Error al eliminar la venta:', err);
+                console.error('Error al guardar datos de la marca en la base de datos:', err);
+                res.status(500).json({ error: 'Error interno del servidor' });
+            } else {
+                res.json({ recibido: true, id: resultado.insertId, nombre, cantidad });
+            }
+        });
+    });
+};
+
+const actualizarMarca = (req, res) => {
+    const idMarca = req.params.id;
+    const { nombre, cantidad } = req.body;
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error al obtener conexión:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+            return;
+        }
+        connection.query('UPDATE marcas SET nombre = ?, cantidad = ? WHERE id = ?', [nombre, cantidad, idMarca], (err, resultado) => {
+            connection.release();
+            if (err) {
+                console.error('Error al actualizar los datos de la marca en la base de datos:', err);
+                res.status(500).json({ error: 'Error interno del servidor' });
+            } else {
+                res.json({ actualizado: true, id: idMarca, nombre, cantidad });
+            }
+        });
+    });
+};
+
+const eliminarMarca = (req, res) => {
+    const idMarca = req.params.id;
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error al obtener conexión:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+            return;
+        }
+        connection.query('DELETE FROM marcas WHERE id = ?', [idMarca], (err, resultado) => {
+            connection.release();
+            if (err) {
+                console.error('Error al eliminar la marca:', err);
                 res.status(500).json({ error: 'Error interno del servidor' });
             } else {
                 if (resultado.affectedRows > 0) {
-                    res.json({ eliminado: true, id: idVenta });
+                    res.json({ eliminado: true, id: idMarca });
                 } else {
-                    res.status(404).json({ error: 'No se encontró ninguna venta con el ID proporcionado' });
+                    res.status(404).json({ error: 'Marca no encontrada' });
                 }
             }
         });
@@ -108,8 +109,9 @@ const eliminarVenta = (req, res) => {
 };
 
 module.exports = {
-    getVentas,
-    crearVenta,
-    getVentaById,
-    eliminarVenta
+    getMarcas,
+    getMarcaById,
+    crearMarca,
+    actualizarMarca,
+    eliminarMarca
 };

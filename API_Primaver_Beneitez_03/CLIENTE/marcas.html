@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <a href="index.html">
+                <h1 class="text-center">API de Coches de David</h1>
+            </a>
+            <h2 class="text-center">Marcas</h2>
+        </div>
+
+        <div class="dropdown container text-center">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              MENU
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="concesionarios.html">Concesionarios</a>
+                <a class="dropdown-item" href="marcas.html">Marcas</a>
+                <a class="dropdown-item" href="ventas.html">Ventas</a>
+            </div>
+          </div>
+    </header>
+    
+    <div id="deleteMarcas" class="mt-5 container">
+        <h2>Ver y Borrar marcas</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaMarcas">
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="editarMarca" style="display:none;" class="container mt-5">
+        <h2>Editar Marca</h2>
+        <form id="editarMarcaForm">
+            <input type="hidden" id="idMarcaEdit" name="idMarca">
+            <label for="nombreMarcaEdit">Nombre de la Marca:</label>
+            <input type="text" id="nombreMarcaEdit" name="nombreMarca" required>
+            <label for="cantidadEdit">Cantidad:</label>
+            <input type="number" id="cantidadEdit" name="cantidad" required>
+            <button type="submit">Guardar Cambios</button>
+            <button type="button" onclick="document.getElementById('editarMarca').style.display='none'">Cancelar</button>
+        </form>
+    </div>
+    
+    
+
+    <div id="Marcas" class="container mt-5">
+        <h2> Registrar una marca (POST)</h2>
+        <form id="marcaForm" style="margin-bottom: 10px;">
+            <label for="nombreMarcaInput" style="margin-bottom: 5px;">Nombre de la Marca:</label>
+            <input type="text" id="nombreMarcaInput" name="nombreMarca" class="form-control" required style="margin-bottom: 10px;">
+            
+            <label for="cantidadInput" style="margin-bottom: 5px;">Cantidad:</label>
+            <input type="number" id="cantidadInput" name="cantidad" class="form-control" required style="margin-bottom: 10px;">
+            
+            <button type="submit" class="btn btn-primary">Registrar Marca</button>
+        </form>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/marcas.js"></script>
+</body>
+</html>

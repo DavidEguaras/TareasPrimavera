@@ -1,31 +1,49 @@
-document.addEventListener('DOMContentLoaded', cargarMarcas);
+document.addEventListener('DOMContentLoaded', () => {
+    cargarMarcas();
+    document.getElementById('searchMarca').addEventListener('input', filtrarMarcas);
+});
 
-//Cargamos la tabla marcas
+// Cargamos la tabla marcas
 function cargarMarcas() {
     fetch(url + "/marcas")
         .then(response => response.json())
         .then(marcas => {
-            const cuerpoTabla = document.getElementById('cuerpoTablaMarcas');
-            cuerpoTabla.innerHTML = '';
-
-            const filas = marcas.map(marca => `
-                <tr>
-                    <td>${marca.id}</td>
-                    <td>${marca.nombre}</td>
-                    <td>${marca.cantidad}</td>
-                    <td>
-                        <button onclick="cargarFormularioEdicionMarca(${marca.id})">Editar</button>
-                        <button onclick="eliminarMarca(${marca.id})">Eliminar</button>
-                    </td>
-                </tr>
-            `).join('');
-
-            cuerpoTabla.innerHTML = filas;
+            mostrarMarcas(marcas);
         })
         .catch(error => console.error('Error al cargar las marcas:', error));
 }
 
-//elimnamos la marca que tenga como id el pasado como parametro
+function mostrarMarcas(marcas) {
+    const cuerpoTabla = document.getElementById('cuerpoTablaMarcas');
+    cuerpoTabla.innerHTML = '';
+
+    const filas = marcas.map(marca => `
+        <tr>
+            <td>${marca.id}</td>
+            <td>${marca.nombre}</td>
+            <td>${marca.cantidad}</td>
+            <td>
+                <button onclick="cargarFormularioEdicionMarca(${marca.id})">Editar</button>
+                <button onclick="eliminarMarca(${marca.id})">Eliminar</button>
+            </td>
+        </tr>
+    `).join('');
+
+    cuerpoTabla.innerHTML = filas;
+}
+
+function filtrarMarcas(event) {
+    const filtro = event.target.value.toLowerCase();
+    fetch(url + "/marcas")
+        .then(response => response.json())
+        .then(marcas => {
+            const marcasFiltradas = marcas.filter(marca => marca.nombre.toLowerCase().includes(filtro));
+            mostrarMarcas(marcasFiltradas);
+        })
+        .catch(error => console.error('Error al filtrar las marcas:', error));
+}
+
+// Eliminar una marca
 function eliminarMarca(idMarca) {
     fetch(url + "/marcas/" + idMarca, {
         method: 'DELETE'
@@ -45,7 +63,7 @@ function eliminarMarca(idMarca) {
     });
 }
 
-//cargamos el formulario para editar una marca por su id
+// Cargar formulario de edición
 function cargarFormularioEdicionMarca(idMarca) {
     fetch(url + "/marcas/" + idMarca)
         .then(response => response.json())
@@ -59,8 +77,7 @@ function cargarFormularioEdicionMarca(idMarca) {
         .catch(error => console.error('Error al cargar la marca para editar:', error));
 }
 
-
-//Evento de manejar el submit de edicion de una marca
+// Manejar submit de edición
 document.getElementById("editarMarcaForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -95,7 +112,7 @@ document.getElementById("editarMarcaForm").addEventListener("submit", function(e
     });
 });
 
-//evento de manejar el submit del POST de una marca
+// Manejar submit del registro de una marca
 document.getElementById("marcaForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
